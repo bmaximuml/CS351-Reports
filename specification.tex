@@ -43,6 +43,11 @@
 %\end{abstract}
 
 \section{Problem Statement}
+Networking is an important area of Computing, and as network sizes and average complexity of projects have increased,
+the need for network connections with very low latency has also increased.
+Using FPGAs to conduct switching logic can result in a switch with a very high throughput, since this switching logic will be implemented in hardware. The look-up tables (LUTs) on an FPGA can be used to store MAC addresses, allowing an FPGA based switch to theoretically determine the appropriate port to direct a packet to in a single clock cycle. Unlike ASICs, FPGAs are also able to be reconfigured on the fly, so MAC address tables can dynamically updated while still being implemented in hardware.
+For all of these reasons, FPGA-based network switches should be able to be used to create networks with a much higher throughput than traditional networking hardware, and investigation into FPGA-based switches may reveal further opportunity for other FPGA-based networking hardware, such as routers or firewalls.
+
 \section{Objectives}
 \section{Methods}
 \section{Timetable}
