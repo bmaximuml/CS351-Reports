@@ -12,6 +12,7 @@
 %% Useful packages
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{pgfgantt}
 \usepackage{url}
 \usepackage{xparse}
 \usepackage{listings}
@@ -63,6 +64,25 @@ For all of these reasons, FPGA-based network switches should be able to be used 
 
 \section{Timetable}
 \label{timetable}
+\begin{ganttchart}{1}{31}
+  \gantttitle{Term 1}{10}
+  \gantttitle{Christmas}{4}
+  \gantttitle{Term 2}{10}
+  \gantttitle{Easter}{5}
+  \gantttitle{Term 3}{2} \\
+  \gantttitlelist{1,...,10}{1}
+  \gantttitlelist{1,...,4}{1}
+  \gantttitlelist{1,...,10}{1}
+  \gantttitlelist{1,...,5}{1}
+  \gantttitlelist{1,...,2}{1} \\
+  \ganttgroup{Group 1}{1}{7} \\
+  \ganttbar{Task 1}{1}{2} \\
+  \ganttlinkedbar{Task 2}{3}{7} \ganttnewline
+  \ganttmilestone{Milestone}{7} \ganttnewline
+  \ganttbar{Final Task}{8}{12}
+  \ganttlink{elem2}{elem3}
+  \ganttlink{elem3}{elem4}
+\end{ganttchart}
 
 \section{Resources}
 \label{resources}
