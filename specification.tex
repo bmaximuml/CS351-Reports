@@ -65,25 +65,35 @@ This project will use an agile methodology so that it can adapt to changes which
 
 \section{Timetable}
 \label{timetable}
-\begin{ganttchart}{1}{31}
-  \gantttitle{Term 1}{10}
-  \gantttitle{Christmas}{4}
-  \gantttitle{Term 2}{10}
-  \gantttitle{Easter}{5}
-  \gantttitle{Term 3}{2} \\
-  \gantttitlelist{1,...,10}{1}
-  \gantttitlelist{1,...,4}{1}
-  \gantttitlelist{1,...,10}{1}
-  \gantttitlelist{1,...,5}{1}
-  \gantttitlelist{1,...,2}{1} \\
-  \ganttgroup{Group 1}{1}{7} \\
-  \ganttbar{Write Specification}{1}{1} \\
-  \ganttlinkedbar{Task 2}{2}{7} \ganttnewline
-  \ganttmilestone{Milestone}{7} \ganttnewline
-  \ganttbar{Final Task}{8}{12}
-  \ganttlink{elem2}{elem3}
-  \ganttlink{elem3}{elem4}
-\end{ganttchart}
+
+\begin{figure}
+  \begin{ganttchart}{1}{31}
+    \gantttitle{Term 1}{10}
+    \gantttitle{Christmas}{4}
+    \gantttitle{Term 2}{10}
+    \gantttitle{Easter}{5}
+    \gantttitle{Term 3}{2} \\
+    \gantttitlelist{1,...,10}{1}
+    \gantttitlelist{1,...,4}{1}
+    \gantttitlelist{1,...,10}{1}
+    \gantttitlelist{1,...,5}{1}
+    \gantttitlelist{1,...,2}{1} \\
+    \ganttgroup{Initial Research}{2}{7} \\
+    \ganttbar{Write Specification}{1}{1} \ganttnewline
+    \ganttmilestone{Submit Specification}{2} \\
+    \ganttlinkedbar{Task 2}{3}{7} \ganttnewline
+    \ganttbar{Write Progress Report}{8}{8} \\
+    \ganttmilestone{Submit Progress Report}{9} \ganttnewline
+    \ganttbar{Final Task}{10}{12}
+    \ganttlink{elem1}{elem2}
+    \ganttlink{elem2}{elem3}
+    \ganttlink{elem3}{elem4}
+    \ganttlink{elem4}{elem5}
+    \ganttlink{elem5}{elem6}
+  \end{ganttchart}
+  \caption{Gantt Chart of Project Timetable}
+  \label{gantt_chart}
+\end{figure}
 
 \section{Resources}
 \label{resources}
