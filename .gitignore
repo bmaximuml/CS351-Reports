@@ -253,3 +253,7 @@ TSWLatexianTemp*
 
 # standalone packages
 *.sta
+
+
+IEEEtran
+IEEEtran.zip
