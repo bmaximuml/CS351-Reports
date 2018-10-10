@@ -63,11 +63,24 @@ In order to measure the success of this project and to clearly define the work t
 
 These requirements define the technical detail of the system produced over the course of the project, as well as the data to be analysed for the final report.
 \begin{enumerate}[label=\textbf{F\arabic*:}]
+  \item The system \textbf{must} be able to analyse packets at layer 2 of the OSI network model
+  \item The system \textbf{must} be able to send packets to the correct port based on MAC addresses
+  \item The system \textbf{must} be able to store MAC address tables
+  \item The system \textbf{must} be able to keep MAC address tables up to date
+  \item The average latency of the system \textbf{must} be measured
+  \item The throughput of the system \textbf{must} be measured
+  \item The system \textbf{should} be able to analyse packets at layer 3 of the OSI network model
+  \item The system \textbf{could} be able to analyse packets at layer 7 of the OSI network model
+  \item The system \textbf{could} be able to detect basic network attacks (such as SYN Flooding \cite{rfc4987})
+  \item The system \textbf{could} implement features of a basic firewall (such as packet filtering \cite{rfc2979})
 \end{enumerate}
 
 \subsection{Non-Functional Requirements}
 \label{non_functional_requirements}
 \begin{enumerate}[label=\textbf{NF\arabic*:}]
+  \item The system \textbf{should} be scalable
+  \item All code for the system \textbf{should} be well documented and maintainable
+  \item The system \textbf{should} be efficient
 \end{enumerate}
 
 \begin{itemize}
