@@ -125,11 +125,14 @@ This project will use an agile methodology so that it can adapt to changes which
     \ganttbar[name=r_network]{Research Networking Concepts}{3}{3} \\
     \ganttbar[name=r_netfpga]{Research NetFPGA}{4}{4} \\
     \ganttbar[name=r_p4]{Research P4}{5}{6} \\
-    \ganttbar[name=write_prog]{Write Progress Report}{8}{9} \\
+    \ganttbar[name=write_prog]{Write Progress Report}{7}{9} \\
     \ganttmilestone[name=submit_prog]{Submit Progress Report}{9} \\
+    \ganttbar[name=implement_pa]{Implement a Packet analyser on NetFPGA}{10}{16} \\
+    \ganttbar[name=implement_ps]{Implement a Packet Switcher on NetFPGA}{17}{20} \\
+    \ganttbar[name=compare_speed]{Compare latency of NetFPGA switch with conventional switch}{21}{21} \\
     \ganttbar[name=prep_presentation]{Prepare Presentation}{22}{23} \\
     \ganttmilestone[name=presentation]{Presentation}{23} \\
-    \ganttbar[name=write_final]{Write Final Report}{30}{31} \\
+    \ganttbar[name=write_final]{Write Final Report}{24}{31} \\
     \ganttmilestone[name=submit_final]{Submit Final Report}{31} \\
     \ganttlink{write_spec}{submit_spec}
     \ganttlink{submit_spec}{r_network}
@@ -137,7 +140,12 @@ This project will use an agile methodology so that it can adapt to changes which
     \ganttlink{r_netfpga}{r_p4}
     \ganttlink{r_p4}{write_prog}
     \ganttlink{write_prog}{submit_prog}
+    \ganttlink{submit_prog}{implement_pa}
+    \ganttlink{implement_pa}{implement_ps}
+    \ganttlink{implement_ps}{compare_speed}
+    \ganttlink{compare_speed}{prep_presentation}
     \ganttlink{prep_presentation}{presentation}
+    \ganttlink{presentation}{write_final}
     \ganttlink{write_final}{submit_final}
   \end{ganttchart}
   \caption{Gantt Chart of Project Timetable}
