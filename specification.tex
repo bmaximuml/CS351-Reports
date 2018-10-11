@@ -66,7 +66,6 @@ Using FPGAs to conduct switching logic can result in a switch with a very high t
 For all of these reasons, FPGA-based network switches should be able to be used to create networks with a much higher throughput than traditional networking hardware, and investigation into FPGA-based switches may reveal further opportunity for other FPGA-based networking hardware, such as routers or firewalls.
 % TODO more intro
 
-The NetFPGA \cite{NetFPGA} platform is intended to be used for this project. The NetFPGA is an ``open source hardware and software platform designed for research and teaching'' \cite{NetFPGA_about}. Of the four hardware plaforms available, the NetFPGA 1G \cite{NetFPGA_1G} is the most suitable for this project. The NetFPGA 1G is based around a \textit{Xilinx Virtex-II Pro 50} \cite{virtex2-pro} which contains 53,136 logic cells and 4kb block RAM. In addition, the NetFPGA 1G contains four Gigabit Ethernet networking ports, 4.5MB of SRAM, and 64MB of DDR2 DRAM. It has a standard PCI form factor, and so is compatible with most consumer motherboards.
 % Explain more background
 
 % TODO what are MAC addresses
@@ -136,6 +135,9 @@ These requirements define the technical detail of the system produced over the c
 \subsection{Methods}
 \label{methods}
 This project will use an agile methodology so that it can adapt to changes which arise during the project. Since the research and implementation stages of the project will contribute to confirming the direction the project will take, this flexibilty is important. In addition, git \cite{git} will be used to track changes in both written documents and any code developed for the project, such as any P4 or Verilog code. Repositories will be set up in git for the different areas of the project, and these repositories will be stored primarily on an online GitHub \cite{github} server and will be backed up regularly. A Gantt chart (shown in figure \ref{gantt_chart}) has been constructed to show an outline of the project timetable, and is intended to be flexible to changes arising during the course of the project.
+
+% TODO why is it the most suitable
+The NetFPGA \cite{NetFPGA} platform is intended to be used for this project. It is an ``open source hardware and software platform designed for research and teaching'' \cite{NetFPGA_about}. Of the four hardware plaforms available, the NetFPGA 1G \cite{NetFPGA_1G} is the most suitable for this project. This platform is based around a \textit{Xilinx Virtex-II Pro 50} \cite{virtex2-pro} which contains 53,136 logic cells and 4kb block RAM. In addition, the NetFPGA 1G contains four Gigabit Ethernet networking ports, 4.5MB of SRAM, and 64MB of DDR2 DRAM. It has a standard PCI form factor, and so is compatible with most consumer motherboards.
 
 \subsection{Timetable}
 \label{timetable}
