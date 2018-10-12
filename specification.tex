@@ -7,17 +7,34 @@
 \usepackage{mathptmx}
 
 %% Sets page size and margins
-\usepackage[a4paper,top=2cm,bottom=1.6cm,left=1.8cm,right=1.8cm,marginparwidth=2cm]{geometry}
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3.5cm,right=3.5cm,marginparwidth=3cm]{geometry}
+% \usepackage[a4paper]{geometry}
+
+% \newenvironment{changemargin}[2]{%
+% \begin{list}{}{%
+% \setlength{\topsep}{0pt}%
+% \setlength{\leftmargin}{#1}%
+% \setlength{\rightmargin}{#2}%
+% \setlength{\listparindent}{\parindent}%
+% \setlength{\itemindent}{\parindent}%
+% \setlength{\parsep}{\parskip}%
+% }%
+% \item[]}{\end{list}}
 
 %% Useful packages
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{pdflscape}
 \usepackage{pgfgantt}
+\usepackage{hvfloat}
 \usepackage{url}
 \usepackage{xparse}
+\usepackage{fancybox}
 \usepackage{listings}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{caption}
+\usepackage{afterpage}
 \usepackage{lscape}
 \usepackage{enumitem}
 
@@ -50,59 +67,58 @@
 
 \section{Glossary}
 \label{glossary}
-The following acronyms are used throughout the specification:
+The following acronyms are used throughout the specification.
 \begin{itemize}
   \item \textbf{FPGA}: Field-Programmable Gate Array
   \item \textbf{ASIC}: Application-Specific Integrated Circuit
   \item \textbf{LUT}: Look-Up Table
+  \item \textbf{MAC Address}: Media Access Control Address
+  \item \textbf{OSI model}: Open Systems Interconnection model
+  \item \textbf{TCP SYN flooding}: Media Access Control Address
+  \item \textbf{PCIe}: Peripheral Component Interconnect Express
+  \item \textbf{SRAM}: Standard Random-Access Memory
+  \item \textbf{DRAM}: Dynamic Random-Access Memory
+  \
 \end{itemize}
 
 \section{Problem Statement}
 \label{problem_statement}
-Networking is an important area of Computing, and as network sizes and average complexity of projects have increased,
-the need for network connections with very low latency has also increased.
+Networking is an important area of Computing, and as network sizes and average complexity of projects have increased, the need for network connections with very low latency has also increased. For systems such as Automated Trading Systems \cite{automated_trading_system}, a small delay in completing a trade can result in a significant difference in profit. The faster trades can be processed, the greater the potential for increased revenue. Most conventional network switches will have a latency in the range of ``hundreds of nanoseconds to tens of microseconds'' \cite{latency_ethernet_switches}. In networks with a large amount of data flowing through a network switch every second, reducing this latency could result in a significant improvement to the speed of the network.
 
-% TODO more intro
-
-% Explain more background
-
-% TODO what are MAC addresses
-
-% TODO what is conventional networking like. What's the current problem
-
-Using Field-Programmable Gate Arrays (FPGAs) to conduct switching logic can result in a switch with a very high throughput, since this switching logic will be implemented in hardware. The look-up tables (LUTs) on an FPGA can be used to store MAC addresses, allowing an FPGA based switch to theoretically determine the appropriate port to direct a packet to, in a single clock cycle.Unlike Application-Specific Integrated Circuits (ASICs), FPGAs are also able to be reconfigured on the fly, so MAC address tables can be dynamically updated while still being implemented in hardware.
+Using FPGAs to conduct switching logic can result in a switch with a very high throughput, since this switching logic will be implemented in hardware. The LUTs on an FPGA can be used to store the MAC addresses of the devices connected to the network switch. This allows an FPGA based switch to theoretically determine the appropriate port to direct a packet to, in a single clock cycle. Unlike ASICs, FPGAs can be reconfigured on the fly, so MAC address tables can be dynamically updated while still being implemented in hardware.
 For all of these reasons, FPGA-based network switches have the potential to create networks with a much higher throughput than traditional networking hardware, and investigation into FPGA-based switches may reveal further opportunity for other FPGA-based networking hardware, such as routers or firewalls.
-
-
-% TODO REsearch implementation testing comparison
-% TODO objectives first
-% TODO then to help with objectives, here's requirements
+% TODO this project will be launching
 
 \section{Objectives}
 \label{objectives}
+This project will consist of four stages: Research, Implementation, Testing, and Evaluation, and the objectives have been separated as such.
 
+\subsection{Research}
 \begin{itemize}
   \item Research networking concepts (such as the OSI network model)
-  \item Research methods of measuring latency
+  \item Research methods of measuring latency of a network switch
   \item Research the NetFPGA platform \cite{NetFPGA}
   \item Research the packet switching language P4 \cite{P4}
+\end{itemize}
+\subsection{Implementation}
+\begin{itemize}
   \item Implement a packet analyser on a NetFPGA
   \item Implement a packet switcher on a NetFPGA
+\end{itemize}
+\subsection{Testing}
+\begin{itemize}
   \item Test throughput and latency of switching packets using the NetFPGA packet switcher
   \item Test throughput and latency of switching packets using a conventional network switch
-  \item Compare performance of NetFPGA packet switcher to conventional network switch
+\end{itemize}
+\subsection{Evaluation}
+\begin{itemize}
+  \item Compare performance of the NetFPGA packet switcher to a conventional network switch
   \item Write up performance comparison
 \end{itemize}
 
-
-% TODO What's MoSCoW
-% TODO sounds like i'm doubting myself at this stage based on the research that has been completed, a reasonable route is as follow. However this may change over the course odf the project
-
-% TODO describe what you're actually making ie what is the system
-
 \section{Requirements}
 \label{requirements}
-In order to measure the success of this project and to clearly define the work to be done, the following have been written. These requirements are subject to change over the course of the project, and are more intended to lay out one available route that the project could take rather than serve to restrict the bounds of the project. They have been written using the MoSCoW method.
+In order to measure the success of this project and to clearly define the work to be done, the following requirements have been written to support the objectives above. Since the research stage and initial implementation stage will be used to confirm the direction for the remainder project, these requirements are subject to change. They indicate a feasible path through the project which should return interesting valuable results. They have been written using the MoSCoW method \cite{moscow}, which is a prioritisation technique that helps write clearly defined requirements.
 
 \subsection{Functional Requirements}
 \label{functional_requirements}
@@ -117,34 +133,42 @@ These requirements define the technical detail of the system produced over the c
   \item The throughput of the system \textbf{must} be measured
   \item The system \textbf{should} be able to analyse packets at layer 3 of the OSI network model
   \item The system \textbf{could} be able to analyse packets at layer 7 of the OSI network model
-  \item The system \textbf{could} be able to detect basic network attacks (such as SYN Flooding \cite{rfc4987})
+  \item The system \textbf{could} be able to detect basic network attacks (such as TCP SYN Flooding \cite{rfc4987})
   \item The system \textbf{could} implement features of a basic firewall (such as packet filtering \cite{rfc2979})
 \end{enumerate}
 
 \subsection{Non-Functional Requirements}
 \label{non_functional_requirements}
+These requirements describe the general operation of the system produced, as well as how the project should be developed
+
 \begin{enumerate}[label=\textbf{NF\arabic*:}]
   \item The system \textbf{should} be scalable
-  \item All code for the system \textbf{should} be well documented and maintainable
   \item The system \textbf{should} be efficient
+  \item All code for the system \textbf{should} be well-documented and maintainable
 \end{enumerate}
+\newpage
 
 \section{Project Management}
 \label{project_management}
 
 \subsection{Methods}
 \label{methods}
-This project will use an agile methodology so that it can adapt to changes which arise during the project. Since the research and implementation stages of the project will contribute to confirming the direction the project will take, this flexibilty is important. In addition, git \cite{git} will be used to track changes in both written documents and code developed for the project, such as P4 or Verilog code. Repositories will be set up using git for the different areas of the project, and these repositories will be stored primarily on an online GitHub \cite{github} server that will be backed up regularly. The Gantt chart in Figure \ref{gantt_chart} has been constructed to show an outline of the project timetable, and is intended to be flexible to changes arising during the course of the project.
+This project will use an Agile methodology so that it can adapt to changes which arise during the project. Since the research and implementation stages of the project will contribute to confirming its direction, this flexibilty is important. In addition, git \cite{git} will be used to track changes in both written documents and code developed, such as P4 or Verilog code. Repositories will be set up using git for the different areas of the project, and these repositories will be stored primarily on an online GitHub \cite{github} server that will be backed up regularly. The Gantt chart in Figure \ref{gantt_chart} has been constructed to show an outline of the project timetable, and is intentionally flexible for the changes that will take place.
 
-% TODO why is it the most suitable
-The NetFPGA \cite{NetFPGA} platform is intended to be used for this project. It is an ``open source hardware and software platform designed for research and teaching'' \cite{NetFPGA_about}. Of the four hardware plaforms available, the NetFPGA 1G \cite{NetFPGA_1G} is the most suitable for this project. This platform is based around a \textit{Xilinx Virtex-II Pro 50} \cite{virtex2-pro} which contains 53,136 logic cells and 4kb block RAM. In addition, the NetFPGA 1G contains four Gigabit Ethernet networking ports, 4.5MB of SRAM, and 64MB of DDR2 DRAM. It has a standard PCI form factor, and so is compatible with most consumer motherboards.
+The NetFPGA \cite{NetFPGA} platform is intended to be used for this project. It is an ``open source hardware and software platform designed for research and teaching'' \cite{NetFPGA_about}. Of the four hardware plaforms available, the NetFPGA 1G \cite{NetFPGA_1G} is the most suitable for this project, since its hardware is most compatible with general purpose consumer hardware. The other three platforms could be used to create faster circuits than the NetFPGA 1G, however these may require additional hardware, which is not currently available for this project. This platform is based around a \textit{Xilinx Virtex-II Pro 50} \cite{virtex2-pro} which contains 53,136 logic cells and 4kb block RAM. In addition, the NetFPGA 1G contains four Gigabit Ethernet networking ports, 4.5MB of SRAM, and 64MB of DDR2 DRAM. It has a standard PCI form factor, and so is compatible with most consumer motherboards.
+
+% \clearpage
+% \newpage
+% \begin{changemargin}{-2cm}{-2cm}
 
 \subsection{Timetable}
 \label{timetable}
-
+% \afterpage{
 \begin{landscape}
-\begin{figure}
+% \hvFloat{figure}{
+\begin{figure}[h!]
   \begin{center}
+  \scalebox{0.9}{
   \begin{ganttchart}[hgrid, vgrid]{1}{32}
     \gantttitle{Term 1}{10}
     \gantttitle{Christmas}{4}
@@ -164,7 +188,7 @@ The NetFPGA \cite{NetFPGA} platform is intended to be used for this project. It 
     \ganttbar[name=r_p4]{Research P4}{5}{6} \\
     \ganttbar[name=write_prog]{Write Progress Report}{7}{9} \\
     \ganttmilestone[name=submit_prog]{Submit Progress Report}{9} \\
-    \ganttbar[name=implement_pa]{Implement a Packet analyser on NetFPGA}{10}{16} \\
+    \ganttbar[name=implement_pa]{Implement a Packet Analyser on NetFPGA}{10}{16} \\
     \ganttbar[name=implement_ps]{Implement a Packet Switcher on NetFPGA}{17}{20} \\
     \ganttbar[name=compare_speed]{Compare latency of NetFPGA switch with conventional switch}{21}{21} \\
     \ganttbar[name=prep_presentation]{Prepare Presentation}{22}{23} \\
@@ -184,41 +208,44 @@ The NetFPGA \cite{NetFPGA} platform is intended to be used for this project. It 
     \ganttlink{prep_presentation}{presentation}
     \ganttlink{presentation}{write_final}
     \ganttlink{write_final}{submit_final}
-  \end{ganttchart}
+  \end{ganttchart}}
   \caption{Gantt Chart of Project Timetable}
   \label{gantt_chart}
 \end{center}
-\end{figure}
+\end{figure}%{Gantt Chart of Project Timetable}
 \end{landscape}
+% }
 
+% \end{changemargin}
 
+\newpage
 \section{Resources}
 \label{resources}
 This project will use a number of different resources, including hardware, software, and languages. These are listed below.
 \begin{itemize}
   \item git \cite{git}
     \begin{itemize}
-      \item git will be used for version control of all code and documents
+      \item will be used for version control of all code and documents
     \end{itemize}
   \item GitHub \cite{github}
     \begin{itemize}
-      \item Will be used as an external server to store code and documents, as well as an interface to git
+      \item will be used as an external server to store code and documents, as well as an interface for git
     \end{itemize}
   \item NetFPGA \cite{NetFPGA}
     \begin{itemize}
-      \item Will be used as the platform on which a switch is developed
+      \item will be used as the platform on which a switch is developed
     \end{itemize}
   \item P4 \cite{P4}
     \begin{itemize}
-      \item Will be used to implement packet switching on the NetFPGA
+      \item will be used to implement packet switching on the NetFPGA
     \end{itemize}
   \item LaTeX \cite{latex}
     \begin{itemize}
-      \item Will be used to write and format all documents
+      \item will be used to write and format all documents
     \end{itemize}
   \item Atom \cite{atom}
     \begin{itemize}
-      \item Will be used as an editor to write code
+      \item will be used as an editor to write code
     \end{itemize}
 \end{itemize}
 
