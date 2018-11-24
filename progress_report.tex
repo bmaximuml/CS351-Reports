@@ -1,0 +1,100 @@
+\documentclass[12pt, a4paper, twoside, onecolumn]{article}
+
+\usepackage{cs351_preamble}
+
+% You may want to use \vspace{-1cm} at times to change vertical spacing in a slightly hacky but functional way
+
+\title{CS351 Computer Systems Engineering Project \\ \vspace{0.5cm} Network Switch Design on Field-Programmable Gate Arrays \\ \vspace{0.3cm} \Large{Progress Report}}
+\author{1611586}
+
+\begin{document}
+
+\input{progress_report_titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Glossary}
+\label{glossary}
+The following acronyms are used throughout the specification.
+\begin{itemize}
+  \item \textbf{FPGA}: Field-Programmable Gate Array
+  \item \textbf{ASIC}: Application-Specific Integrated Circuit
+  \item \textbf{LUT}: Look-Up Table
+  \item \textbf{MAC Address}: Media Access Control Address
+  \item \textbf{OSI model}: Open Systems Interconnection model
+  \item \textbf{TCP SYN flooding}: Media Access Control Address
+  \item \textbf{PCIe}: Peripheral Component Interconnect Express
+  \item \textbf{SRAM}: Standard Random-Access Memory
+  \item \textbf{DRAM}: Dynamic Random-Access Memory
+  \
+\end{itemize}
+
+\subsection{Timetable}
+\label{timetable}
+% \afterpage{
+\begin{landscape}
+% \hvFloat{figure}{
+\begin{figure}[h!]
+  \begin{center}
+  \scalebox{0.9}{
+  \begin{ganttchart}[hgrid, vgrid]{1}{32}
+    \gantttitle{Term 1}{10}
+    \gantttitle{Christmas}{4}
+    \gantttitle{Term 2}{10}
+    \gantttitle{Easter}{5}
+    \gantttitle{Term 3}{3} \\
+    \gantttitlelist{1,...,10}{1}
+    \gantttitlelist{1,...,4}{1}
+    \gantttitlelist{1,...,10}{1}
+    \gantttitlelist{1,...,5}{1}
+    \gantttitlelist{1,...,3}{1} \\
+    % \ganttgroup{Initial Research}{2}{7} \\
+    \ganttbar[name=write_spec]{Write Specification}{1}{2} \\
+    \ganttmilestone[name=submit_spec]{Submit Specification}{2} \\
+    \ganttbar[name=r_network]{Research Networking Concepts}{3}{3} \\
+    \ganttbar[name=r_netfpga]{Research NetFPGA}{4}{4} \\
+    \ganttbar[name=r_p4]{Research P4}{5}{6} \\
+    \ganttbar[name=write_prog]{Write Progress Report}{7}{9} \\
+    \ganttmilestone[name=submit_prog]{Submit Progress Report}{9} \\
+    \ganttbar[name=implement_pa]{Implement a Packet Analyser on NetFPGA}{10}{16} \\
+    \ganttbar[name=implement_ps]{Implement a Packet Switcher on NetFPGA}{17}{20} \\
+    \ganttbar[name=compare_speed]{Compare latency of NetFPGA switch with conventional switch}{21}{21} \\
+    \ganttbar[name=prep_presentation]{Prepare Presentation}{22}{23} \\
+    \ganttmilestone[name=presentation]{Presentation}{23} \\
+    \ganttbar[name=write_final]{Write Final Report}{24}{31} \\
+    \ganttmilestone[name=submit_final]{Submit Final Report}{31} \\
+    \ganttlink{write_spec}{submit_spec}
+    \ganttlink{submit_spec}{r_network}
+    \ganttlink{r_network}{r_netfpga}
+    \ganttlink{r_netfpga}{r_p4}
+    \ganttlink{r_p4}{write_prog}
+    \ganttlink{write_prog}{submit_prog}
+    \ganttlink{submit_prog}{implement_pa}
+    \ganttlink{implement_pa}{implement_ps}
+    \ganttlink{implement_ps}{compare_speed}
+    \ganttlink{compare_speed}{prep_presentation}
+    \ganttlink{prep_presentation}{presentation}
+    \ganttlink{presentation}{write_final}
+    \ganttlink{write_final}{submit_final}
+  \end{ganttchart}}
+  \caption{Gantt Chart of Project Timetable}
+  \label{gantt_chart}
+\end{center}
+\end{figure}%{Gantt Chart of Project Timetable}
+\end{landscape}
+% }
+
+% \end{changemargin}
+
+
+\bibliographystyle{ieeetr}
+\bibliography{bibliography}
+
+\begin{appendices}
+  \section{Initial Specification}
+  \includepdf[pages=-]{specification.pdf}
+  % \include{specification}
+\end{appendices}
+
+\end{document}
