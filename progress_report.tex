@@ -19,17 +19,85 @@
 The following acronyms are used throughout the specification.
 \begin{itemize}
   \item \textbf{FPGA}: Field-Programmable Gate Array
-  \item \textbf{ASIC}: Application-Specific Integrated Circuit
-  \item \textbf{LUT}: Look-Up Table
-  \item \textbf{MAC Address}: Media Access Control Address
-  \item \textbf{OSI model}: Open Systems Interconnection model
-  \item \textbf{TCP SYN flooding}: Media Access Control Address
-  \item \textbf{PCIe}: Peripheral Component Interconnect Express
-  \item \textbf{SRAM}: Standard Random-Access Memory
-  \item \textbf{DRAM}: Dynamic Random-Access Memory
-  \
+  \item \textbf{MTU}: Maximum Transmission Unit
+  \item \textbf{OSI model}: Open Systems Interconnection reference model
+  \item \textbf{IP}: Internet Protocol
+  \item \textbf{TCP}: Transmission Control Protocol
 \end{itemize}
 
+\section{Introduction}
+\label{introduction}
+
+
+
+
+\section{Research}
+\label{research}
+
+\subsection{Networking}
+Since core networking concepts form much of the background for this project, a reasonable amount of time was dedicated to researching these. These are detailed below.
+\subsubsection{Network Packets}
+A `packet' in networking refers to a unit of data. This term only applies to certain units of data, since data at different stages in network models (see section \ref{network_models}) takes different names. Ultimately, a packet consists of two parts: a set of `headers', and a `payload'. The headers contain metadata about the packet, such as where it was sent from, where it was sent to, or a checksum of the packet used for error checking. A packet tends to have multiple headers, each stacked on top of one another. Each header is used by a different layer of the OSI model (see section \ref{network_models}). When a packet is being constructed, each layer prepends its header to the packet payload before sending it down to the next layer. The payload carries the actual packet data. In most cases, many packets will be required to send a message, since packets have a fixed maximum size. This limit in size is known as the Maximum Transmission Unit (MTU), and for an Ethernet packet, this is 1518 bytes including headers.
+
+\subsubsection{Network Models}
+\label{network_models}
+The two most commonly used models are the Open Systems Interconnection Reference model (commonly referred to as the OSI model), and the TCP/IP model. Both of these models consist of layers and are intended to allow the detail of the layers beneath the layer you are working at to be abstracted away. This means that, for example, a web server will not need to know any detail about the networking hardware of the server it is running on.
+
+The OSI model was created in 1994 \cite{iec7498_1_1994} and consists of seven layers, shown in table \ref{osi_model}. It has suffered from a few key criticisms, such as the fact that some layers have very little use in most applications, and the complexity of the model can result in large and slow systems. In addition, when the OSI standard was approved, the competing TCP/IP model was being used by most research universities, and so did not receive as much support as might have been expected
+
+The TCP/IP
+
+\begin{table}[!ht]
+  \begin{center}
+    \begin{tabularx}{\textwidth}{|c|l|X|}
+      \hline
+      \textbf{7} & Application & The layer where user programs live. In addition to user specificed programs, there are common applications such as FTP, Telnet (virtual terminal), or e-mail, which operate at the application layer. \\ \hline
+      \textbf{6} & Presentation & Provides a set of data transformation services including character conversion, data compression, and data encryption. \\ \hline
+      \textbf{5} & Session & Designed to manage an entire conversation, consisting of a number of dialogue units which can be suspended and restarted through synchronisation points. However, client/server communication is based on an asymmetric model, in which one or more client processes can request resources from a server process. \\ \hline
+      \textbf{4} & Transport & Provides datagrams for both connection-oriented and connectionless protocols. In a connection-oriented service, the transport layer negotiates a suitable quality of service for the given network and application. This typically includes throughput, transit delay, and error rate among other paramters. \\ \hline
+      \textbf{3} & Network & Highest layer within the communication subnet, deals with control issues like routing, congestion control, and error recovery. \\ \hline
+      \textbf{2} & Data Link & Provides frames which give addressing, error control, and sequencing, necessary to provide a reliable service. \\ \hline
+      \textbf{1} & Physical & Responsible for transporting bits of information. Bandwidth, signal levels, and signal coding methods are specified at this level. \\ \hline
+    \end{tabularx}
+  \end{center}
+\caption{The Open Systems Interconnection Reference model \cite{networks01}}
+\label{osi_model}
+\end{table}
+
+\begin{table}[!ht]
+  \begin{center}
+    \begin{tabularx}{\textwidth}{|c|l|X|}
+      \hline
+      \textbf{4} & Application & Equivalent to the Session, Presentation, and Application layers of the OSI model. The Application layer is used to handle all process to process communication, and includes session establishment, compression, and encryption. \\ \hline
+      \textbf{3} & Transport & Equivalent to the Transport layer of the OSI model. The Transport layer includes message segmentation, session multiplexing, and message reordering. \\ \hline
+      \textbf{2} & Internet & Equivalent to the Network layer of the OSI model. The Internet layer includes traffic routing, traffic control, and logical addressing. \\ \hline
+      \textbf{1} & Link & Equivalent to the Data Link and Physical layers of the OSI model. Provides physical network functions like signal levels, signal coding methods and, error detection. \\ \hline
+    \end{tabularx}
+  \end{center}
+  \caption{The TCP/IP model \cite{tcpip_pearson}}
+  \label{tcp_ip_model}
+\end{table}
+
+\subsubsection{Packet Switching}
+Store-and-forward transmission
+\subsubsection{Physical Media}
+UTP (Unshielded Twisted Pair)
+Fibre Optic
+Coaxial
+\subsubsection{Performance}
+
+
+
+\subsection{P4}
+\subsection{NetFPGA}
+
+\section{Development Technologies}
+
+
+\section{Future Steps}
+
+\section{Project Management}
+\label{project_management}
 \subsection{Timetable}
 \label{timetable}
 % \afterpage{
@@ -86,6 +154,8 @@ The following acronyms are used throughout the specification.
 % }
 
 % \end{changemargin}
+
+\section{Conclusion}
 
 
 \bibliographystyle{ieeetr}
