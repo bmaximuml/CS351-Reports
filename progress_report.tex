@@ -25,6 +25,7 @@ The following acronyms are used throughout the specification.
   \item \textbf{TCP}: Transmission Control Protocol
   \item \textbf{ARPANET}: Advanced Research Projects Agency Network
   \item \textbf{DARPA}: Defense Advanced Research Projects Agency (USA)
+  \item \textbf{UTP}: Unshielded Twisted Pair
 \end{itemize}
 
 \section{Introduction}
@@ -87,6 +88,9 @@ UTP (Unshielded Twisted Pair)
 Fibre Optic
 Coaxial
 \subsubsection{Performance}
+There are different categories of physical media that can be used to transmit data. The two most common types are UTP and optical fibre. UTP consists of two copper wires coated in plastic and twisted together. The wires are twisted partially to keep them together, but also to help cancel out electromagnetic interference between the wires \cite{networks03}. UTP is currently the dominant media, primarily since it has been commercially available for so long.
+
+Optical fibre beats out copper in most categories, only really falling behind when it comes to cost, the price gap between UTP and optical fibre is narrowing \cite{copper_fibre_universal}. Optical fibre has a singicantly higher theoretical maximum bandwidth, is much more durable, and can be used across much longer distances with less signal attenuation \cite{copper_fibre_multicom}. UTP and optical fibre do use different connectors and so it is difficult to take full advantage of the benefits of optical fibre when using the standard ethernet connectors found in most consumer hardware. All of the hardware platforms offered by NetFPGA aside from the NetFPGA 1G \cite{NetFPGA_1G} are designed for optical fibre. This is discussed further in section \ref{netfpga_research}.
 
 
 
