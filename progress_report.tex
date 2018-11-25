@@ -23,6 +23,8 @@ The following acronyms are used throughout the specification.
   \item \textbf{OSI model}: Open Systems Interconnection reference model
   \item \textbf{IP}: Internet Protocol
   \item \textbf{TCP}: Transmission Control Protocol
+  \item \textbf{ARPANET}: Advanced Research Projects Agency Network
+  \item \textbf{DARPA}: Defense Advanced Research Projects Agency (USA)
 \end{itemize}
 
 \section{Introduction}
@@ -45,7 +47,7 @@ The two most commonly used models are the Open Systems Interconnection Reference
 
 The OSI model was created in 1994 \cite{iec7498_1_1994} and consists of seven layers, shown in table \ref{osi_model}. It has suffered from a few key criticisms, such as the fact that some layers have very little use in most applications, and the complexity of the model can result in large and slow systems. In addition, when the OSI standard was approved, the competing TCP/IP model was being used by most research universities, and so did not receive as much support as might have been expected
 
-The TCP/IP
+The TCP/IP model was developed for ARPANET, a predecessor of the modern internet funded by DARPA. TCP was developed to serve as a protocol for communication within ARPANET from different underlying hardware (such as between satellite packet networks and ground-based radio packet networks). It initially covered both the Internet and Transport layers of what would become the TCP/IP model, however it was suggested to separate the protocol, which resulted in the creation of the Internet Protocol (IP). These protocols went through a number of revisions before arriving at TCP/IP v4, which is still in use today.
 
 \begin{table}[!ht]
   \begin{center}
