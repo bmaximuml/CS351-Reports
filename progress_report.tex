@@ -42,6 +42,7 @@ Since core networking concepts form much of the background for this project, a r
 
 \subsubsection{Network Packets}
 \label{network_packets}
+
 A `packet' in networking refers to a unit of data. This term only applies to certain units of data, since data at different stages in network models (see section \ref{network_models}) takes different names. Ultimately, a packet consists of two parts: a set of `headers', and a `payload'. The headers contain metadata about the packet, such as where it was sent from, where it was sent to, or a checksum of the packet used for error checking. A packet tends to have multiple headers, each stacked on top of one another. Each header is used by a different layer of the OSI model (see section \ref{network_models}). When a packet is being constructed, each layer prepends its header to the packet payload before sending it down to the next layer. The payload carries the actual packet data. In most cases, many packets will be required to send a message, since packets have a fixed maximum size. This limit in size is known as the Maximum Transmission Unit (MTU), and for an Ethernet packet, this is 1518 bytes including headers.
 
 \subsubsection{Network Models}
@@ -96,17 +97,28 @@ Optical fibre beats out copper in most categories, only really falling behind wh
 % \subsubsection{Performance}
 
 \subsubsection{Packet Headers}
-As mentioned in section \ref{network_packets}, `headers' are used to store metadata about network packets. Each layer of the TCP/IP
+As mntioned in section \ref{network_packets}, `headers' are used to store metadata about network packets. Each layer of the TCP/IP model prepends an additional header to the data, resulting in a payload with multiple headers attached as shown in figure \ref{segments_packets_frames}. Most protocols have a set header format, making it much easier to extract data from them. As an example, the header for an IPv4 packet is shown in figure \ref{ip_header}. Each row of the header represents 32 bits of data. The \textit{Options} field of the header has a variable length, so the \textit{IHL} field is used to record the length of the IP header. The \textit{Total Length} field represents the total size of the packet in 32 bit words, including both the header and the payload. This information can be used to extract the data from the headers, and to remove the appropriate number of bits in order to read the payload itself. For this project the P4 language \cite{P4} will be used to extract data from packet headers, as will be discussed further in section \ref{p4_research}.
+The \textit{Version} field of the IP header refers to which version of the protocol is used by the packet. The most commonly used version is IPv4, however a newer version, IPv6, has been standardised \cite{rfc1883} \cite{rfc8200}. IPv6 was primarily intended to address the issue of addressing in IPv4. Every device on a network using IP requires a unique IP address. When data is being sent to a particular device, its IP address is used at the Internet layer of the TCP/IP model to locate the device. An IPv4 address is 32 bits long, meaning there are a total of 4,294,967,296 IPv4 addresses for a given network. While this is more than enough for any local network, a very large network (such as the internet) does run the risk of hitting this limit. In fact, the internet has now had all of the available addresses allocated \cite{iana_ipv4_address_space_registry}. Comparatively, an IPv6 address is 128 bits long, providing a total of $3.4 \times 10^38$ IPv6 addresses. Since IPv6 is not yet widely implemented, it is being considered beyond the scope of this project.
 
-addressing
-ethernet
-IP
-IPv6 (out of scope)
-TCP
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=14cm]{frames.png}
+	\end{center}
+	\caption{Nesting of segments, packets, and frames. \cite{tanenbaum}}
+	\label{segments_packets_frames}
+\end{figure}
 
-
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=14cm]{ip_header.png}
+	\end{center}
+	\caption{The IPv4 (Internet Protocol) header. \cite{tanenbaum}}
+	\label{ip_header}
+\end{figure}
 
 \subsection{P4}
+\label{p4_research}
+
 \subsection{NetFPGA}
 \label{netfpga_research}
 
