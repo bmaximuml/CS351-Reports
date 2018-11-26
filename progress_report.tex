@@ -86,12 +86,9 @@ The TCP/IP model was developed for ARPANET, a predecessor of the modern internet
 \end{table}
 
 \subsubsection{Packet Switching}
+Layers of a model can offer either a connection-oriented or a connectionless service to the layers above. A connection-oriented service involves establishing a connection, using the connection, and then releasing the connection, similar to a landline telephone system. This requires all the parameters for the connection to be specified in advance, which may involve a negotiation between the sender and the receiver.
 
-connectionless vs connection orented
-Circuit switching vs message Switching vs packet switching
-Store-and-forward transmission
-routing
-
+A connectionless service involves providing every packet with the full source and destination address for the data. Each packet is then sent independently such that each node the packet passes through chooses the next node to send it to. The current node makes this decision by choosing the node that is closest to the packet's final destination from the nodes it is aware of. There are two main switching methods for a connectionless service: ``store-and-forward'' and ``cut-through''. ``Store-and-forward'' involves each intermediate node receiving a message in full before forwarding packets to the next node, while ``cut-through'' does not require an intermediate node to have the entire message before it starts forwarding packets \cite{tanenbaum}.
 
 \subsubsection{Physical Media}
 There are different categories of physical media that can be used to transmit data. The two most common types are UTP and optical fibre. UTP consists of two copper wires coated in plastic and twisted together. The wires are twisted partially to keep them together, but also to help cancel out electromagnetic interference between the wires \cite{networks03}. UTP is currently the dominant media, primarily since it has been commercially available for so long.
