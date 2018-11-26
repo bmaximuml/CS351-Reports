@@ -26,6 +26,7 @@ The following acronyms are used throughout the specification.
   \item \textbf{ARPANET}: Advanced Research Projects Agency Network
   \item \textbf{DARPA}: Defense Advanced Research Projects Agency (USA)
   \item \textbf{UTP}: Unshielded Twisted Pair
+  \item \textbf{SDN}: Software-defined Networking
 \end{itemize}
 
 \section{Introduction}
@@ -85,10 +86,13 @@ The TCP/IP model was developed for ARPANET, a predecessor of the modern internet
 \end{table}
 
 \subsubsection{Packet Switching}
+
 connectionless vs connection orented
 Circuit switching vs message Switching vs packet switching
 Store-and-forward transmission
 routing
+
+
 \subsubsection{Physical Media}
 There are different categories of physical media that can be used to transmit data. The two most common types are UTP and optical fibre. UTP consists of two copper wires coated in plastic and twisted together. The wires are twisted partially to keep them together, but also to help cancel out electromagnetic interference between the wires \cite{networks03}. UTP is currently the dominant media, primarily since it has been commercially available for so long.
 
@@ -116,8 +120,13 @@ The \textit{Version} field of the IP header refers to which version of the proto
 	\label{ip_header}
 \end{figure}
 
+\subsubsection{Software-Defined Networking}
+\label{software_defined_networking}
+
+
 \subsection{P4}
 \label{p4_research}
+P4 is a language for programming the data plane of network devices \cite{P4}.
 
 \subsection{NetFPGA}
 \label{netfpga_research}
