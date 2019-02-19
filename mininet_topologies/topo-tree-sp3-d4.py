@@ -24,7 +24,15 @@ class TreeTopo(Topo):
         # Add hosts and switches
         # switch naming convention:
         #   s{level}{previous_switch_number}{switch_number}
+        s011 = self.addSwitch('s011')
+
         s111 = self.addSwitch('s111')
+        s112 = self.addSwitch('s112')
+        s113 = self.addSwitch('s113')
+
+        self.addLink(s011, s111)
+        self.addLink(s011, s112)
+        self.addLink(s011, s113)
 
         s211 = self.addSwitch('s211')
         s212 = self.addSwitch('s212')
@@ -34,58 +42,50 @@ class TreeTopo(Topo):
         self.addLink(s111, s212)
         self.addLink(s111, s213)
 
-        s311 = self.addSwitch('s311')
-        s312 = self.addSwitch('s312')
-        s313 = self.addSwitch('s313')
+        s221 = self.addSwitch('s221')
+        s222 = self.addSwitch('s222')
+        s223 = self.addSwitch('s223')
 
-        self.addLink(s211, s311)
-        self.addLink(s211, s312)
-        self.addLink(s211, s313)
+        self.addLink(s112, s221)
+        self.addLink(s112, s222)
+        self.addLink(s112, s223)
 
-        s321 = self.addSwitch('s321')
-        s322 = self.addSwitch('s322')
-        s323 = self.addSwitch('s323')
+        s231 = self.addSwitch('s231')
+        s232 = self.addSwitch('s232')
+        s233 = self.addSwitch('s233')        
 
-        self.addLink(s212, s321)
-        self.addLink(s212, s322)
-        self.addLink(s212, s323)
+        self.addLink(s113, s231)
+        self.addLink(s113, s232)
+        self.addLink(s113, s233)
 
-        s331 = self.addSwitch('s331')
-        s332 = self.addSwitch('s332')
-        s333 = self.addSwitch('s333')        
-
-        self.addLink(s213, s331)
-        self.addLink(s213, s332)
-        self.addLink(s213, s333)
-
-        
+        hosts = []
         for i in range(27):
-            hosts[i] = self.addHost(f'h{i]')
+            hosts.append(self.addHost('h' + str(i)))
             if i < 3:
-                self.addLink(s311, hosts[i])
+                self.addLink(s211, hosts[i])
             elif i < 6:
-                self.addLink(s312, hosts[i])
+                self.addLink(s212, hosts[i])
 
             elif i < 9:
-                self.addLink(s313, hosts[i])
+                self.addLink(s213, hosts[i])
 
             elif i < 12:
-                self.addLink(s321, hosts[i])
+                self.addLink(s221, hosts[i])
 
             elif i < 15:
-                self.addLink(s322, hosts[i])
+                self.addLink(s222, hosts[i])
 
             elif i < 18:
-                self.addLink(s323, hosts[i])
+                self.addLink(s223, hosts[i])
 
             elif i < 21:
-                self.addLink(s331, hosts[i])
+                self.addLink(s231, hosts[i])
 
             elif i < 24:
-                self.addLink(s332, hosts[i])
+                self.addLink(s232, hosts[i])
 
             else:
-                self.addLink(s333, hosts[i])
+                self.addLink(s233, hosts[i])
 
 
 topos = { 'treetopo': ( lambda: TreeTopo() ) }
