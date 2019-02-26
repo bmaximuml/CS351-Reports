@@ -8,6 +8,13 @@ A tree topology with a spread of 3 and a depth of 4
 
 Adding the 'topos' dict with a key/value pair to generate our newly defined
 topology enables one to pass in '--topo=mytopo' from the command line.
+
+TCULinks are required to support the delays.
+
+Run a test to ping every node from every other node with the command:
+`sudo mn --custom topo-tree-sp3-d4-delay.py --topo treetopo --link tc --test pingall`
+
+
 """
 
 from mininet.topo import Topo
@@ -21,8 +28,8 @@ class TreeTopo(Topo):
         # Initialize topology
         Topo.__init__(self)
 
-        # 15 Mbps bandwidth and 2 ms delay on each link
-        linkopts = dict(bw=10, delay='20ms', loss=10, use_htb=True)
+        # 10 Mbps bandwidth, 20 ms delay, 1% packet loss on each link
+        linkopts = dict(bw=10, delay='20ms', loss=1, use_htb=True)
 
         # Add hosts and switches
 
