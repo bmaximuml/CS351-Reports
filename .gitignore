@@ -259,3 +259,5 @@ IEEEtran
 IEEEtran.zip
 
 progress_report.pdf
+
+*.pyc
