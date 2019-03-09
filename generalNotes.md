@@ -9,3 +9,5 @@
     * And different latencies at switches
 
 * Hierarchical Token Bucket (HTB) rate limiting algorithm (use_htb=true on links)
+
+* https://fangpenlin.com/posts/2012/08/26/good-logging-practice-in-python/

@@ -17,8 +17,12 @@ from mininet.util import dumpNodeConnections
 from mininet.log import setLogLevel
 from mininet.clean import Cleanup
 
-import click
+import os
 import re
+import json
+import click
+import logging
+import logging.config
 
 # from sys import argv
 
@@ -73,6 +77,25 @@ class TreeTopoGeneric(Topo):
                         self.addLink(switch, switches[i + 1][(spread * j) + k], **linkopts)
 
 
+def setup_logging(
+    default_path='logging.json',
+    default_level=logging.INFO,
+    env_key='LOG_CFG'
+):
+    """Setup logging configuration
+
+    """
+    path = default_path
+    value = os.getenv(env_key, None)
+    if value:
+        path = value
+    if os.path.exists(path):
+        with open(path, 'rt') as f:
+            config = json.load(f)
+        logging.config.dictConfig(config)
+    else:
+        logging.basicConfig(level=default_level)
+
 
 def validate_delay(ctx, param, value):
     valid_time = re.compile("^[0-9]+[PTGMkmunpf]?s$")
@@ -86,29 +109,66 @@ def validate_delay(ctx, param, value):
 @click.option('-s', '--spread', default=3, show_default=True, help='Number of children each node will have')
 @click.option('-d', '--depth', default=4, show_default=True, help='Number of levels in the tree')
 @click.option('-b', '--bandwidth', default=10, show_default=True, help='Max bandwidth of all links in Mbps')
-@click.option('-e', '--delay', default='20ms', show_default=True, help='Max bandwidth of all links', callback=validate_delay)
+@click.option('-e', '--delay', default='1ms', show_default=True, help='delay of all links',
+              callback=validate_delay)
 @click.option('-l', '--loss', default=0, show_default=True, help='% chance of packet loss for all links')
-@click.option('--log', default='info', show_default=True, help='Set the log level')
+
+@click.option('-p', '--ping_all', is_flag=True, help='Run a ping test between all hosts')
+@click.option('-i', '--iperf', is_flag=True, help='Test bandwidth between first and last host')
+
+@click.option('-q', '--quick', is_flag=True, help='For testing purposes')
+
+@click.option('--log', default='info', show_default=True,
+              type=click.Choice(['debug', 'info', 'output', 'warning', 'error', 'critical']), help='Set the log level')
+def performance_test(spread, depth, bandwidth, delay, loss, ping_all, iperf, quick, log):
+    if quick:
+        spread = 3
+        depth = 3
+        bandwidth = 500
+        delay = '0ms'
+        loss = 0
+        ping_all = True
+        iperf = True
+        log = 'info'
 
 
-def performance_test(log, spread, depth, bandwidth, delay, loss):
     Cleanup.cleanup()
     setLogLevel(log)
+    logger = logging.getLogger(__name__)
+
+    if log == 'debug':
+        logger.setLevel(logging.DEBUG)
+        setup_logging(default_level=logging.DEBUG)
+    elif log == 'warning':
+        logger.setLevel(logging.WARNING)
+        setup_logging(default_level=logging.WARNING)
+    elif log == 'error':
+        logger.setLevel(logging.ERROR)
+        setup_logging(default_level=logging.ERROR)
+    elif log == 'critical':
+        logger.setLevel(logging.CRITICAL)
+        setup_logging(default_level=logging.CRITICAL)
+    else:
+        logger.setLevel(logging.INFO)
+        setup_logging(default_level=logging.INFO)
+
+
+
     "Create network and run simple performance test"
     topo = TreeTopoGeneric(spread, depth, bandwidth, delay, loss)
-    net = Mininet(topo=topo,
-                  host=CPULimitedHost, link=TCLink,
-                  autoStaticArp=True)
+    net = Mininet(topo=topo, host=CPULimitedHost, link=TCLink, autoStaticArp=True)
     net.start()
-    click.echo("Dumping host connections")
+    logging.info("Dumping host connections")
     dumpNodeConnections(net.hosts)
 
-    click.echo("Running ping test between all hosts")
-    net.pingAll()
+    if ping_all:
+        logging.info("Running ping test between all hosts")
+        net.pingAll()
 
-    click.echo("Testing bandwidth between first and last hosts")
-    # h1, h4 = net.getNodeByName('h1', 'h4')
-    net.iperf()
+    if iperf:
+        logging.info("Testing bandwidth between first and last hosts")
+        net.iperf()
+        
     net.stop()
 
 if __name__ == '__main__':
