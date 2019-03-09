@@ -261,3 +261,6 @@ IEEEtran.zip
 progress_report.pdf
 
 *.pyc
+
+venv/*
+*.egg-info
