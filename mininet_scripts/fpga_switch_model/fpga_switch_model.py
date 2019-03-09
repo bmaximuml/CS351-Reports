@@ -158,15 +158,15 @@ def performance_test(spread, depth, bandwidth, delay, loss, ping_all, iperf, qui
     topo = TreeTopoGeneric(spread, depth, bandwidth, delay, loss)
     net = Mininet(topo=topo, host=CPULimitedHost, link=TCLink, autoStaticArp=True)
     net.start()
-    logging.info("Dumping host connections")
+    logger.info("Dumping host connections")
     dumpNodeConnections(net.hosts)
 
     if ping_all:
-        logging.info("Running ping test between all hosts")
+        logger.info("Running ping test between all hosts")
         net.pingAll()
 
     if iperf:
-        logging.info("Testing bandwidth between first and last hosts")
+        logger.info("Testing bandwidth between first and last hosts")
         net.iperf()
         
     net.stop()
