@@ -20,90 +20,66 @@ from mininet.log import setLogLevel
 
 # from sys import argv
 
-class TreeTopo(Topo):
+class TreeTopoGeneric(Topo):
     "Simple topology example."
 
-    def __init__( self ):
+    def __init__(self):
         "Create tree topo."
 
         # Initialize topology
         Topo.__init__(self)
 
+        spread = 3
+        depth = 4
+        bw = 10
+        delay = '20ms'
+        loss = 1
+
         # 10 Mbps bandwidth, 20 ms delay, 1% packet loss on each link
-        linkopts = dict(bw=10, delay='20ms', loss=1, use_htb=True)
+        linkopts = dict(bw=bw, delay=delay, loss=loss, use_htb=True)
 
         # Add hosts and switches
 
         # switch naming convention:
-        #   s{level}{previous_switch_number}{switch_number}
+        #   s[level][switch_number]
 
-        s011 = self.addSwitch('s011')
 
-        s111 = self.addSwitch('s111')
-        s112 = self.addSwitch('s112')
-        s113 = self.addSwitch('s113')
+        switches = [[None for x in range(spread ** depth)] for y in range(depth - 1)]
+        hosts = [None for x in range(spread ** depth)]
 
-        self.addLink(s011, s111, **linkopts)
-        self.addLink(s011, s112, **linkopts)
-        self.addLink(s011, s113, **linkopts)
+        for i in range(depth):
+            for j in range(spread ** i):
+                if i == (depth - 1):
+                    hosts[j] = self.addHost('h' + str(j))
+                else:
+                    sw_name = 's' + str(i) + str(j)
+                    switches[i][j] = self.addSwitch(sw_name)
 
-        s211 = self.addSwitch('s211')
-        s212 = self.addSwitch('s212')
-        s213 = self.addSwitch('s213')
 
-        self.addLink(s111, s211, **linkopts)
-        self.addLink(s111, s212, **linkopts)
-        self.addLink(s111, s213, **linkopts)
+        for i, row in enumerate(switches):
+            for j, switch in enumerate(row):
+                if switch is None:
+                    break;
+                if i == (depth - 2):
+                    for k in range(spread):
+                        # add a link between the current switch, and all hosts
+                        # directly beneath it.
+                        # (spread * j) + k will get all the appropriate hosts
+                        self.addLink(switch, hosts[(spread * j) + k])
 
-        s221 = self.addSwitch('s221')
-        s222 = self.addSwitch('s222')
-        s223 = self.addSwitch('s223')
-
-        self.addLink(s112, s221, **linkopts)
-        self.addLink(s112, s222, **linkopts)
-        self.addLink(s112, s223, **linkopts)
-
-        s231 = self.addSwitch('s231')
-        s232 = self.addSwitch('s232')
-        s233 = self.addSwitch('s233')
-
-        self.addLink(s113, s231, **linkopts)
-        self.addLink(s113, s232, **linkopts)
-        self.addLink(s113, s233, **linkopts)
-
-        hosts = []
-        for i in range(27):
-            hosts.append(self.addHost('h' + str(i)))
-            if i < 3:
-                self.addLink(s211, hosts[i], **linkopts)
-            elif i < 6:
-                self.addLink(s212, hosts[i], **linkopts)
-
-            elif i < 9:
-                self.addLink(s213, hosts[i], **linkopts)
-
-            elif i < 12:
-                self.addLink(s221, hosts[i], **linkopts)
-
-            elif i < 15:
-                self.addLink(s222, hosts[i], **linkopts)
-
-            elif i < 18:
-                self.addLink(s223, hosts[i], **linkopts)
-
-            elif i < 21:
-                self.addLink(s231, hosts[i], **linkopts)
-
-            elif i < 24:
-                self.addLink(s232, hosts[i], **linkopts)
-
-            else:
-                self.addLink(s233, hosts[i], **linkopts)
+                else:
+                    for k in range(spread):
+                        # add a link between the current switch, and all
+                        # switches directly beneath it.
+                        # i + 1 refers to 1 level deeper in the tree, and
+                        # (spread * j) + k will get all the appropriate child
+                        # switches on that level.
+                        self.addLink(switch, switches[i + 1][(spread * j) + k])
 
 
 def perfTest():
     "Create network and run simple performance test"
-    topo = TreeTopo()
+    topo = TreeTopoGeneric()
     net = Mininet(topo=topo,
                   host=CPULimitedHost, link=TCLink,
                   autoStaticArp=True)
