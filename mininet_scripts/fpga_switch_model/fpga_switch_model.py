@@ -18,6 +18,7 @@ from mininet.log import setLogLevel
 from mininet.clean import Cleanup
 
 import click
+import re
 
 # from sys import argv
 
@@ -72,12 +73,21 @@ class TreeTopoGeneric(Topo):
                         self.addLink(switch, switches[i + 1][(spread * j) + k], **linkopts)
 
 
+
+def validate_delay(ctx, param, value):
+    valid_time = re.compile("^[0-9]+[PTGMkmunpf]?s$")
+    # This will allow any valid time, such as '10ms', '23s', '1Gs', etc.
+    # Naturally 1 Ps is both an absurd unit and not a very useful delay, but it should technically be valid.
+    if not valid_time.match(value):
+        raise click.BadParameter("delay must be in the format <time><unit>s. E.g. '10ms', '23s', '200ns'.")
+
+
 @click.command()
 @click.option('-s', '--spread', default=3, show_default=True, help='Number of children each node will have')
 @click.option('-d', '--depth', default=4, show_default=True, help='Number of levels in the tree')
 @click.option('-b', '--bandwidth', default=10, show_default=True, help='Max bandwidth of all links in Mbps')
-@click.option('-e', '--delay', default='20ms', show_default=True, help='Max bandwidth of all links')
-@click.option('-l', '--loss', default=1, show_default=True, help='% chance of packet loss for all links')
+@click.option('-e', '--delay', default='20ms', show_default=True, help='Max bandwidth of all links', callback=validate_delay)
+@click.option('-l', '--loss', default=0, show_default=True, help='% chance of packet loss for all links')
 @click.option('--log', default='info', show_default=True, help='Set the log level')
 
 
