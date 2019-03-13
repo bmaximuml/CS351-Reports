@@ -2,10 +2,10 @@
 
 ## Install from source
 
-1. `git clone git://github.com/mininet/mininet`
+1. `git clone https://github.com/mininet/mininet`
 2. `cd mininet`
 3. `git tag` # list available versions
-4. `git checkout -b 2.2.1 2.2.1`
+4. `git checkout -b 2.2.2 2.2.2`
 5. `cd ..`
 6. `mininet/util/install.sh -a`
 7. `sudo mn --test pingall` # test basic Mininet functionality

@@ -10,4 +10,20 @@
 
 * Hierarchical Token Bucket (HTB) rate limiting algorithm (use_htb=true on links)
 
-* https://fangpenlin.com/posts/2012/08/26/good-logging-practice-in-python/
+* https://fangpenlin.com/posts/2012/08/26/good-logging-practice-in-python/ was used for much of the logging scripts.
+
+* pylint used to lint python
+    * Conforms to PEP8, and other good practices
+* Code made open source
+    * git
+    * Hosted publicly on GitHub
+    * Hopefully will be available on the Docker Hub
+
+
+* Use `git rebase --exec 'git commit --amend --no-edit -n -S' -i development` to sign commits with GPG after committing them
+
+* ICMP defined in [RFC 792](https://tools.ietf.org/html/rfc792)
+
+https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.poisson.html
+
+https://matplotlib.org/api/pyplot_api.html
