@@ -1,0 +1,48 @@
+% Print out all the commands from the "appendix.tex" file
+\input{appendix}
+
+% An example of a table
+\begin{table}[ht]
+  \begin{center}
+    \begin{tabularx}{\textwidth}{|Y|Y|Y"Y|} \hline
+      \textbf{S} & \textbf{A} & \textbf{B} & \textbf{Out} \\ \thickhline
+      0 & 0 & 0 & 0 (A) \\ \hline
+      0 & 0 & 1 & 0 (A) \\ \hline
+      0 & 1 & 0 & 1 (A) \\ \hline
+      0 & 1 & 1 & 1 (A) \\ \hline
+      1 & 0 & 0 & 0 (B) \\ \hline
+      1 & 0 & 1 & 1 (B) \\ \hline
+      1 & 1 & 0 & 0 (B) \\ \hline
+      1 & 1 & 1 & 1 (B) \\ \hline
+    \end{tabularx}
+  \end{center}
+  \caption{Truth table for 1-bit multiplexer}
+  \label{multiplexer_table}
+\end{table}
+
+% An example of a figure with an image
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{assets/SEdit/MUX_INV2.pdf}
+  \caption{1-bit multiplexer with two inverters schematic in S-Edit}
+  \label{mux_inv2_sedit}
+\end{figure}
+
+% An example of a figure with two images in it, next to each other
+\begin{figure}[ht!]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{assets/SEdit/MUX.pdf}% first figure itself
+        \caption{1-bit multiplexer schematic in S-Edit}
+        \label{mux_sedit}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{assets/SEdit/MUX_4.pdf} % second figure itself
+        \caption{4-bit multiplexer schematic in S-Edit}
+        \label{mux_4_sedit}
+    \end{minipage}
+    \caption{1-bit and 4-bit multiplexer in S-Edit}
+    \label{multiplexers_sedit}
+\end{figure}
