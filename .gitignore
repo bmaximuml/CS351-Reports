@@ -264,3 +264,6 @@ progress_report.pdf
 
 venv/*
 *.egg-info
+
+
+final_report.pdf
