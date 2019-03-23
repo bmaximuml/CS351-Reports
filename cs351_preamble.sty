@@ -5,52 +5,47 @@
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{mathptmx}
-\usepackage{standalone}
 
-\usepackage{pdfpages}
-
+% Remove all hyphenation - doesn't work well
+% \hyphenpenalty=10000
+% \exhyphenpenalty=10000
 
 %% Sets page size and margins
 \usepackage[a4paper,top=2cm,bottom=2cm,left=3.5cm,right=3.5cm,marginparwidth=3cm]{geometry}
-% \usepackage[a4paper]{geometry}
-
-% \newenvironment{changemargin}[2]{%
-% \begin{list}{}{%
-% \setlength{\topsep}{0pt}%
-% \setlength{\leftmargin}{#1}%
-% \setlength{\rightmargin}{#2}%
-% \setlength{\listparindent}{\parindent}%
-% \setlength{\itemindent}{\parindent}%
-% \setlength{\parsep}{\parskip}%
-% }%
-% \item[]}{\end{list}}
 
 %% Useful packages
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{rotating}
-\usepackage{pdflscape}
-\usepackage{pgfgantt}
-\usepackage{hvfloat}
-\usepackage{url}
-\usepackage{xparse}
-\usepackage{fancybox}
-\usepackage[page]{appendix}
-\usepackage{listings}
-\usepackage[colorlinks=true, allcolors=blue]{hyperref}
-\usepackage{caption}
 \usepackage{afterpage}
-\usepackage{lscape}
-\usepackage{enumitem}
-\usepackage{tabularx}
+\usepackage{amsmath}
+\usepackage[toc,page]{appendix}
+\usepackage{caption}
 \usepackage{color}
-\usepackage{ltablex}
-
-% Below: pullled from stackoverflow:
-% https://tex.stackexchange.com/questions/83085/how-to-improve-listings-display-of-json-files
-%\usepackage{bera}% optional: just to have a nice mono-spaced font
+\usepackage{enumitem}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{hvfloat}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{listings}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{pdflscape}
+\usepackage{pdfpages}
+\usepackage{pgfgantt}
+\usepackage{pgfplots}
+
+% Place all figures in the section they were defined in
+% Can also use \FloatBarrier to define a barrier
+\usepackage[section]{placeins}
+
+\usepackage{rotating}
+\usepackage{tabularx}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,positioning,shadows,trees}
+
+\usepackage{url}
 \usepackage{xcolor}
+\usepackage{xparse}
+
 
 \hypersetup{
     colorlinks = false
@@ -66,3 +61,19 @@
 \NewDocumentCommand{\codeword}{v}{
   \texttt{\textcolor{black}{#1}}
 }
+
+% Create \thickhline command for tables (creates thick horizontal line)
+\makeatletter
+\newcommand{\thickhline}{%
+  \noalign {\ifnum 0=`}\fi \hrule height 1pt
+  \futurelet \reserved@a \@xhline
+}
+% Create " command for tables (creates thick vertical line)
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+
+\pgfplotsset{compat=1.16}
+
+% Create new column type for tabularx environment (Creates centred auto-width column)
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
