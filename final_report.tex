@@ -1,42 +1,92 @@
-\documentclass[12pt, a4paper, twoside, onecolumn]{article}
+\documentclass[12pt, a4paper, twoside, onecolumn, bibliography=totoc]{scrreprt}
 
 \usepackage{cs351_preamble}
+
 
 % You may want to use \vspace{-1cm} at times to change vertical spacing in a slightly hacky but functional way
 
 \title{CS351 Computer Systems Engineering Project \\ \vspace{0.5cm} Modelling Smart Field-Programmable Gate Array Switches in the Network \\ \vspace{0.3cm} \Large{Progress Report}}
 \author{1611586}
 
+% \usepackage{blindtext}% dummy text
 \begin{document}
+
+% Set font back to computer modern
+\renewcommand{\sfdefault}{cmr}
+
+% \renewcommand{\rmdefault}{cmr}
+% \renewcommand{\ttdefault}{cmr}
 
 \input{final_report_titlepage}
 
+
+\pagenumbering{roman}
+
+% \begin{abstract}
+%   \include{final_report_content/abstract}
+% \end{abstract}
+
+% \newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Abstract}
+\chapter*{Abstract}
+\input{final_report_content/abstract}
+
+
 \tableofcontents
+
+\listoffigures
+
+\listoftables
+
 \newpage
 
-\section{Glossary}
+\pagenumbering{arabic}
+
+\chapter{Glossary}
 \label{glossary}
-The following acronyms are used throughout the specification.
-\begin{itemize}
-  \item \textbf{FPGA}: Field-Programmable Gate Array
-  \item \textbf{MTU}: Maximum Transmission Unit
-  \item \textbf{OSI model}: Open Systems Interconnection reference model
-  \item \textbf{IP}: Internet Protocol
-  \item \textbf{TCP}: Transmission Control Protocol
-  \item \textbf{ARPANET}: Advanced Research Projects Agency Network
-  \item \textbf{DARPA}: Defense Advanced Research Projects Agency (USA)
-  \item \textbf{UTP}: Unshielded Twisted Pair
-  \item \textbf{SDN}: Software-defined Networking
-\end{itemize}
+\input{final_report_content/glossary}
 
-\section{Introduction}
+\chapter{Introduction}
 \label{introduction}
+\input{final_report_content/introduction}
 
-\section{Chapter 1}
-\label{chapter_1}
+\chapter{Research}
+\label{research}
+\input{final_report_content/research}
 
-\section{Chapter 2}
-\label{chapter_2}
+\chapter{Ethical, Social, Legal, and Professional Issues}
+\label{issues}
+\input{final_report_content/issues}
+
+\chapter{Requirements}
+\label{requirements}
+\input{final_report_content/requirements}
+
+\chapter{Project Management}
+\label{project_management}
+\input{final_report_content/project_management}
+
+\chapter{Design}
+\label{design}
+\input{final_report_content/design}
+
+\chapter{Implementation}
+\label{implementation}
+\input{final_report_content/implementation}
+
+\chapter{Testing}
+\label{testing}
+\input{final_report_content/testing}
+
+\chapter{Evaluation}
+\label{evaluation}
+\input{final_report_content/evaluation}
+
+\chapter{Conclusion}
+\label{conclusion}
+\input{final_report_content/conclusion}
+
 
 % LaTeX will not properly compile with no citations. Remove the citation below once you have made citations of your own.
 \cite{rfc1149}

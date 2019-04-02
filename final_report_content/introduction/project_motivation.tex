@@ -1,0 +1,37 @@
+% Current state:
+  % Cloud computing
+    % High latencies
+    % large datacentres
+    % AWS/Azure/hadoop
+% Existing solutions and issues
+  % Mainframes
+    % inflexible
+    % high maintenance
+    % single point of failure
+    % very expensive
+    % more
+  % "edge" / "gateway" nodes
+    % essentially just small datacentres
+    % similar downsides
+  % NetFPGA
+    % doesn't solve problem
+  % SDN
+    % doesn't solve problem
+
+  % Other drawbacks
+    % security
+    % scalability
+    % Flexibility
+    % performance
+
+% Why this, and why this is different?
+  % Don't divert data from current path.
+    % It's heading to datacentre, so use that path.
+  % choose appropriate device
+    % ASIC vs FPGA vs CPU
+
+% Why FPGAs?
+  % Custom compute architectures - very low latency
+  % why not CPU? (bring data in through NIC -> mobo -> mem -> cache -> reg -> CPU -> back out)
+    % FPGA just in and out
+  % Partial reconfiguration
