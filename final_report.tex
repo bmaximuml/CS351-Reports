@@ -19,19 +19,23 @@
 
 \input{final_report_titlepage}
 
-
+\onehalfspacing
 \pagenumbering{roman}
-
-% \begin{abstract}
-%   \include{final_report_content/abstract}
-% \end{abstract}
 
 % \newpage
 \phantomsection
 \addcontentsline{toc}{chapter}{Abstract}
 \chapter*{Abstract}
+\label{abstract}
 \input{final_report_content/abstract}
 
+\newpage
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Glossary}
+\chapter*{Glossary}
+\label{glossary}
+\input{final_report_content/glossary}
 
 \tableofcontents
 
@@ -42,10 +46,6 @@
 \newpage
 
 \pagenumbering{arabic}
-
-\chapter{Glossary}
-\label{glossary}
-\input{final_report_content/glossary}
 
 \chapter{Introduction}
 \label{introduction}
