@@ -19,6 +19,7 @@
 \usepackage[toc,page]{appendix}
 \usepackage{caption}
 \usepackage{color}
+\usepackage{courier}
 \usepackage{enumitem}
 \usepackage{fancybox}
 \usepackage{graphicx}
@@ -28,7 +29,10 @@
 \usepackage{lscape}
 \usepackage{multirow}
 \usepackage{pdflscape}
+
+% Lets you use the \includepdf command to include a pdf in your document as if it were part of the document
 \usepackage{pdfpages}
+
 \usepackage{pgfgantt}
 \usepackage{pgfplots}
 
@@ -41,12 +45,11 @@
 % Allows \doublespacing, \onehalfspacing, \singlespacing and \setstretch{baselinestretch}, which will specify the line spacing for all sections and paragraphs until another command is used.
 \usepackage{setspace}
 \usepackage{tabularx}
+\usepackage{trace}
 
 \usepackage{tikz}
 \usetikzlibrary{arrows,shapes,positioning,shadows,trees}
 
-% \usepackage[nottoc,numbib]{tocbibind}
-\usepackage{tocbibind}
 \usepackage{url}
 \usepackage{xcolor}
 \usepackage{xparse}
@@ -82,3 +85,68 @@
 
 % Create new column type for tabularx environment (Creates centred auto-width column)
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize\ttfamily,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=tb,                   % sets the caption-position to top and bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  firstnumber=1,                   % start line enumeration with line 1000
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+% Styling for Verilog code listings
+\definecolor{vgreen}{RGB}{104,180,104}
+\definecolor{vblue}{RGB}{49,49,255}
+\definecolor{vorange}{RGB}{255,143,102}
+
+\lstdefinestyle{verilog-style}
+{
+    language=Verilog,
+    % identifierstyle=\color{black},
+    % commentstyle=\color{vgreen},
+    % numbers=left,
+    % numberstyle=\tiny\color{black},
+    % numbersep=10pt,
+    % tabsize=8,
+    moredelim=*[s][\colorIndex]{[}{]},
+    literate=*{:}{:}1
+}
+
+\makeatletter
+\newcommand*\@lbracket{[}
+\newcommand*\@rbracket{]}
+\newcommand*\@colon{:}
+\newcommand*\colorIndex{%
+    \edef\@temp{\the\lst@token}%
+    \ifx\@temp\@lbracket \color{black}%
+    \else\ifx\@temp\@rbracket \color{black}%
+    \else\ifx\@temp\@colon \color{black}%
+    \else \color{vorange}%
+    \fi\fi\fi
+}
+\makeatother
