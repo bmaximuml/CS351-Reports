@@ -6,3 +6,14 @@
 % It is restrictive in others
 
 % SDN with OpenFlow
+
+Mininet is an open-source network emulator written primarily in \textit{Python} \cite{mininet}. It is intended for use creating virtual networks, and can be used to design custom network topologies and test different performance characteristics of these networks.
+\textit{Wireshark}, the popular network protocol analyser \cite{wireshark}, can be integrated into mininet, allowing network packets send within a virtual mininet environment to be easily captured and analysed.
+Mininet also provides a \textit{Python} API, allowing it to be easily integrated within other application, and for complex topologies to be constructed using \textit{Python}.
+It is very lightweight, with the total size of the source code being less than 1MB.
+Using Mininet will naturally introduce a dependency chain, however this is the case with most open-source software, and due to its lightweight nature there is a relatively small number of dependencies.
+Mininet uses CI testing through \textit{Travis CI} \cite{travis_ci}, which will run all unit and integration tests upon every commit to the Mininet \textit{GitHub} repository \cite{github}. These tests can be checked to improve the reliability of Mininet.
+
+Currently, the latest stable release of Mininet is version 2.2.2, which was released on 21 March 2017. This is supported on Ubuntu 14.04 LTS, however it is not supported on newer versions of Ubuntu (or other distributions) due to an incompatibility between this version of Mininet and the Linux 3.16 (or newer) kernel. As a result, software which uses Mininet 2.2.2 will also be unsupported on versions of Ubuntu newer than 14.04 LTS.
+
+The fifth release candidate for Mininet 2.3.0 was released on 14 March 2019, and it is expected that when Mininet 2.3.0 is released, it will be supported on Ubuntu 18.04 LTS.
