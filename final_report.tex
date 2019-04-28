@@ -40,11 +40,18 @@
 \let\oldcleardoublepage\cleardoublepage
 \let\cleardoublepage\clearpage
 
+\renewcommand{\abstractname}{Keywords}
+\addcontentsline{toc}{chapter}{Keywords}
+\begin{abstract}
+  \input{final_report_content/keywords}
+\end{abstract}
+
 \renewcommand{\abstractname}{Acknowledgements}
 \addcontentsline{toc}{chapter}{Acknowledgements}
 \begin{abstract}
   \input{final_report_content/acknowledgements}
 \end{abstract}
+
 \let\cleardoublepage\oldcleardoublepage
 % \newpage
 
