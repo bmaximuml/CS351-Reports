@@ -22,7 +22,8 @@ The OSI model was created in 1994 \cite{iec7498_1_1994} and consists of seven la
 
 The TCP/IP model was developed for ARPANET, a predecessor of the modern Internet funded by DARPA. TCP was developed to serve as a protocol for communication within ARPANET from different underlying hardware (such as between satellite packet networks and ground-based radio packet networks). It initially covered both the Internet and Transport layers of what would become the TCP/IP model. However it was suggested that the protocol be separated, which resulted in the creation of the Internet Protocol (IP). These protocols went through a number of revisions before arriving at TCP/IP v4, which is still in use today.
 
-\begin{table}[!ht]
+\begin{table}[t]
+  \caption{The Open Systems Interconnection Reference model \cite{networks01}}
   \begin{center}
     \begin{tabularx}{\textwidth}{|c|l|X|}
       \hline
@@ -35,11 +36,11 @@ The TCP/IP model was developed for ARPANET, a predecessor of the modern Internet
       \textbf{1} & Physical & Responsible for transporting bits of information. Bandwidth, signal levels, and signal coding methods are specified at this level. \\ \hline
     \end{tabularx}
   \end{center}
-\caption{The Open Systems Interconnection Reference model \cite{networks01}}
 \label{osi_model}
 \end{table}
 
-\begin{table}[!ht]
+\begin{table}[t]
+  \caption{The TCP/IP model \cite{tcpip_pearson}}
   \begin{center}
     \begin{tabularx}{\textwidth}{|c|l|X|}
       \hline
@@ -49,7 +50,6 @@ The TCP/IP model was developed for ARPANET, a predecessor of the modern Internet
       \textbf{1} & Link & Equivalent to the Data Link and Physical layers of the OSI model. Provides physical network functions like signal levels, signal coding methods and, error detection. \\ \hline
     \end{tabularx}
   \end{center}
-  \caption{The TCP/IP model \cite{tcpip_pearson}}
   \label{tcp_ip_model}
 \end{table}
 
