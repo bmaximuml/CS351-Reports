@@ -6,23 +6,29 @@
 Many different management and development tools were used during the project. Management tools were used to ensure the project continued according to plan, and that if changes in direction needed to be made, they were documented and made in the most appropriate way. Developemt tools were used to ensure that the design, research, and implementation stages progressed as efficiently as possible, and that the quality of the produced system was as high as possible.
 
 \subsection{Management Tools}
+\label{management_tools}
 The management tools used in the project are shown in figure \ref{management_tools_logos}, and are discussed below.
 
 \subsubsection{Atom \cite{atom}}
-\textit{Atom} was used as a text editor for writing the specification, progress report, and final report of the project. These are all key components of the project, and \textit{Atom} eased the editing process.
+\textit{Atom} was used as a text editor for writing the specification, progress report, and final report of the project. These are all key components of the project, and \textit{Atom}'s clean, customisable interface eased the editing process of these documents.
 
-\subsubsection{git \cite{git}}
-\textit{git} was used for version control for all the the source code and document code of the project. This allowed changes made throughout the development of the system to be tracked and recorded, and makes the code's full history available to be viewed.
+\subsubsection{Git \cite{git}}
+\textit{Git} was used for version control for all the the source code and document code of the project. This allowed changes made throughout the development of the system to be tracked and recorded, and makes the full history of the code and documents available to be viewed.
 
 \subsubsection{GitHub \cite{github}}
-\textit{}
+\textit{GitHub} is a web-based hosting service for version control using \textit{Git}. All project code, including \textit{LaTeX} code for documents, was stored on \textit{GitHub}. When edits where necessary, the code was downloaded, edited, then uploaded back to \textit{GitHib}. This meant that \textit{GitHub} would always contain the most up to date version of the code, and could also be seen as an off-site backup repository, because the content stored there would have been uploaded from a local machine holding the same data.
 
 \subsubsection{LaTeX \cite{latex}}
+\textit{LaTeX} is a typesetting system which was used for all documents in this project. \textit{LaTeX} was used to improve the efficiency of document writing, and to ensure the produced documents were of a sufficient high aesthetic and professional standard.
+
 \subsubsection{Resilio Sync \cite{resilio_sync}}
+\textit{Resilio Sync} is a multi-platform peer-to-peer file syncronisation tool. Using a modified version of the BitTorrent protocol, \textit{Resilio Sync} is able to synchronise files between devices faster than than a standard file sharing application would be able to. Using this tool, project code and documents were synchronised between the different of devices of the developer. This provided additional backups as well as the ability to work on the project from any device with the application installed.
+
 \subsubsection{Trello \cite{trello}}
+\textit{Trello} is a web-based Kanban board. A Kanban board is used to separate a project into small tasks, and visually separate these tasks into different lists. A common layout for a Kanban board, and the one that was used in this project, is to have one list of tasks which need completing, one list of tasks which are in progress, and one list of tasks which have been completed. This makes it clear exactly what remains to be done, and the progress of every task can be tracked. \textit{Trello} includes additional features, such as the ability to assign labels to tasks, or to add checklists to tasks.
 
 
-\begin{figure}[ht]
+\begin{figure}[t]
   \centering
   \newcommand{\managementToolsLogosHeight}{1.7cm}
   \includegraphics[height=\managementToolsLogosHeight]{assets/tools/management/atom.png}
@@ -39,23 +45,42 @@ The management tools used in the project are shown in figure \ref{management_too
 The development tools used in the project are shown in figure \ref{development_tools_logos}, and are discussed below.
 
 \subsubsection{Atom \cite{atom}}
-\subsubsection{Bash \cite{bash}}
-\subsubsection{Docker \cite{docker}}
-\subsubsection{GitKraken \cite{gitkraken}}
-\subsubsection{PyCharm \cite{pycharm}}
-\subsubsection{tmux \cite{tmux}}
-\subsubsection{Ubuntu \cite{ubuntu}}
-\subsubsection{vim \cite{vim}}
-\subsubsection{VirtualBox \cite{virtualbox}}
+In addition to being used to write the documents for the project, \textit{Atom} was used as a text editor for writing the project code which was not written in \textit{Python}.
 
-\begin{figure}[ht]
+\subsubsection{Bash \cite{bash}}
+\textit{Bash} is a Unix shell and command language. It was used during the project as an Ubuntu and Debian shell, and for writing shell scripts.
+
+\subsubsection{Docker \cite{docker}}
+\textit{Docker} is a containerisation platform. Containers are comparable to lightweight virtual machines, although they share a kernel with their host. \textit{Docker} was used in this project to test the operation of the application in a clean interface.
+% Docker was also used as a deployment method. By deploying the project to the \textit{Docker Hub}, a public repository for \textit{Docker} images, it is easily accessible from any computer with \textit{Docker} installed.
+
+% \subsubsection{GitKraken \cite{gitkraken}}
+\subsubsection{PyCharm \cite{pycharm}}
+\textit{PyCharm} is an IDE developed specifically for \textit{Python} development, and was used for the aspects of the project code which were written in \textit{Python}. It included a variety of useful features, such as integrated support for \textit{pylint} \cite{pylint}, which scans \textit{Python} code for bugs and syntax errors.
+
+\subsubsection{Python \cite{python}}
+\textit{Python} was used as the primary development language for the project. This was partially motivated by \textit{Mininet}'s API being written in \textit{Python}, however this is also language with which the developer was familiar, and provides access to many additional packages through \textit{Python}'s \textit{pip} package installer \cite{pip}.
+
+\subsubsection{tmux \cite{tmux}}
+\textit{tmux} is a terminal multiplexer which allows a user to switch between several programs in one terminal. \textit{tmux} was used whenever a terminal was used, and allowed, for example, multiple programs to be viewed side by side in a single terminal window.
+
+\subsubsection{Ubuntu \cite{ubuntu}}
+\textit{Ubuntu} is a Linux-based open-source OS based off \textit{Debian}, another Linux-based OS. \textit{Ubuntu} was used for the development of the project, as this is the primary OS that \textit{Mininet} is supported on.
+
+\subsubsection{Vim \cite{vim}}
+\textit{Vim} is an open-source text editor. It is lightweight, and can be easily used from the terminal. \textit{Vim} was used to edit code during the project on remote servers where more substantial text editors such as \textit{Atom} were too resource intensive, or were not supported.
+
+\subsubsection{VirtualBox \cite{virtualbox}}
+\textit{VirtualBox} is an open-source virtualisation product, allowing virtual machines to be created and managed. \textit{VirtualBox} was used to create virtual machines on which the application was tested in a clean environment.
+
+\begin{figure}[t]
   \centering
   \newcommand{\developmentToolsLogosHeight}{1.7cm}
   \includegraphics[height=\developmentToolsLogosHeight]{assets/tools/development/atom.png}
   \includegraphics[height=\developmentToolsLogosHeight]{assets/tools/development/bash.png}
   % \includegraphics[height=\developmentToolsLogosHeight]{assets/tools/development/click.png}
   \includegraphics[height=\developmentToolsLogosHeight]{assets/tools/development/docker.png}
-  \includegraphics[height=\developmentToolsLogosHeight]{assets/tools/development/gitkraken.png}
+  % \includegraphics[height=\developmentToolsLogosHeight]{assets/tools/development/gitkraken.png}
   \includegraphics[height=\developmentToolsLogosHeight]{assets/tools/development/pycharm.png}
   % \includegraphics[height=\developmentToolsLogosHeight]{assets/tools/development/pylint.png}
   \includegraphics[height=\developmentToolsLogosHeight]{assets/tools/development/python.png}
