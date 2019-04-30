@@ -50,9 +50,6 @@
 % Allows \doublespacing, \onehalfspacing, \singlespacing and \setstretch{baselinestretch}, which will specify the line spacing for all sections and paragraphs until another command is used.
 \usepackage{setspace}
 \usepackage{tabularx}
-
-% include the ToC in the ToC
-\usepackage{tocbibind}
 \usepackage{trace}
 
 \usepackage{tikz}
@@ -158,3 +155,6 @@
     \fi\fi\fi
 }
 \makeatother
+
+% include the ToC in the ToC
+\setuptoc{toc}{totoc}
