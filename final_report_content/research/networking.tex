@@ -9,12 +9,12 @@
 %
 % SDN
 
-\subsubsection{Network Packets}
+\subsection{Network Packets}
 \label{network_packets}
 
 A `packet' in networking refers to a unit of data. This term only applies to certain units of data, since data at different stages in network models (see section \ref{network_models}) takes different names. A packet consists of two parts: a set of `headers', and a `payload'. The headers contain metadata about the packet, such as where it was sent from, where it was sent to, or a checksum of the packet used for error checking. A packet tends to have multiple headers, each stacked on top of one another. Each header is used by a different layer of the OSI model (see section \ref{network_models}). When a packet is being constructed, each layer prepends its header to the packet payload before sending it down to the next layer. The payload carries the actual packet data. In most cases, many packets will be required to send a message, since packets have a fixed maximum size. This limit in size is known as the Maximum Transmission Unit (MTU), and for an Ethernet packet, this is 1518 bytes including headers.
 
-\subsubsection{Network Models}
+\subsection{Network Models}
 \label{network_models}
 The two most commonly used models are the Open Systems Interconnection Reference model (commonly referred to as the OSI model), and the TCP/IP model. Both of these models consist of layers and are intended to allow the detail of the layers beneath the layer currently being used to be abstracted away. This means that, for example, a web server will not need to know any detail about the networking hardware of the server it is running on.
 
@@ -53,20 +53,20 @@ The TCP/IP model was developed for ARPANET, a predecessor of the modern Internet
   \label{tcp_ip_model}
 \end{table}
 
-\subsubsection{Packet Switching}
+\subsection{Packet Switching}
 Layers of a model can offer either a connection-oriented or a connectionless service to the layers above. A connection-oriented service involves establishing a connection, using the connection, and then releasing the connection, similar to a landline telephone system. This requires all the parameters for the connection to be specified in advance, which may involve a negotiation between the sender and the receiver.
 
 A connectionless service involves providing every packet with the full source and destination address for the data. Each packet is then sent independently so that each node the packet passes through chooses the next node to send it to. The current node makes this decision by choosing the node that is closest to the packet's final destination from the nodes it is aware of. There are two main switching methods for a connectionless service: ``store-and-forward'' and ``cut-through''. ``Store-and-forward'' involves each intermediate node receiving a message in full before forwarding packets to the next node, while ``cut-through'' does not require an intermediate node to have the entire message before it starts forwarding packets \cite{tanenbaum}.
 
-\subsubsection{Physical Media}
+\subsection{Physical Media}
 \label{physical_media_research}
 There are different categories of physical media that can be used to transmit data. The two most common types are UTP and optical fibre. UTP consists of two copper wires coated in plastic and twisted together. The wires are twisted partially to keep them together, but also to help cancel out electromagnetic interference between the wires \cite{networks03}. UTP is currently the dominant media, primarily since it has been commercially available for so long.
 
 Optical fibre performs better than copper in most categories, only really falling behind when it comes to cost, although the price gap between UTP and optical fibre is narrowing \cite{copper_fibre_universal}. Optical fibre has a significantly higher theoretical maximum bandwidth, is much more durable, and can be used across much longer distances with less signal attenuation \cite{copper_fibre_multicom}. UTP and optical fibre use different connectors and so it is difficult to take full advantage of the benefits of optical fibre when using the standard RJ-45 connectors found in most consumer hardware. All of the hardware platforms offered by NetFPGA, apart from the NetFPGA 1G \cite{NetFPGA_1G}, are designed to use optical fibre. %This is discussed further in section \ref{netfpga_research}.
 
-% \subsubsection{Performance}
+% \subsection{Performance}
 
-\subsubsection{Packet Headers}
+\subsection{Packet Headers}
 As mentioned in section \ref{network_packets}, `headers' are used to store metadata about network packets.
 Each layer of the TCP/IP model prepends an additional header to the data, resulting in a payload with multiple headers attached, as shown in figure \ref{segments_packets_frames}.
 Most protocols have a set header format, making it much easier to extract data from them. As an example, the header for an IPv4 packet is shown in figure \ref{ip_header}. Each row of the header represents 32 bits of data.
