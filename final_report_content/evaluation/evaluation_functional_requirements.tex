@@ -1,3 +1,34 @@
 % To what extent did you achieve the functional requirement
 % Make reference to it
 % Draw table with SUCCESS or FAILURE, and evaluation of how the requirement has been met
+
+This section evaluates the success of the functional requirements laid out in section \ref{functional_requirements}. Table \ref{evaluation_functional_requirements_table} displays each requirement along with a statement of whether or not it has been successfully achieved.
+
+\begin{center}
+  \begin{longtable}{|l|p{9cm}|c|}
+    \caption{Success of Functional Requirements} \\ \hline
+    \label{evaluation_functional_requirements_table}
+    \textbf{F\#} & \textbf{Requirement} & \textbf{Success / Failure} \\ \thickhline
+    \textbf{F1} & The system \textbf{must} allow the modelling of a network with at least three switches and four hosts, arranged in a tree topology as shown in figure \ref{minimum_tree}. & \textcolor{green}{SUCCESS} \\ \hline
+    \textbf{F2} & The system \textbf{must} allow switches and hosts to be configured in a tree topology. & \textcolor{green}{SUCCESS} \\ \hline
+    \textbf{F3} & The system \textbf{must} allow users to specify the spread of the network when using a tree topology (i.e. how many children a node switch node will have). & \textcolor{green}{SUCCESS} \\ \hline
+    \textbf{F4} & The system \textbf{must} allow users to specify the number of levels in the network when using a tree topology. & \textcolor{green}{SUCCESS} \\ \hline
+    \textbf{F5} & The system \textbf{must} allow users to specify the which level in the network should be modelled as FPGA-based smart network switches. & \textcolor{green}{SUCCESS} \\ \hline
+    \textbf{F6} & The system \textbf{must} allow users to run a test to ensure there is an active connection between all hosts. & \textcolor{green}{SUCCESS} \\ \hline
+    \textbf{F7} & The system \textbf{must} allow users to run a test to display the bandwidth of the system. & \textcolor{green}{SUCCESS} \\ \hline
+    \textbf{F8} & The system \textbf{must} allow users to run a test to display the delay between the leaf nodes and the root when using a tree topology. & \textcolor{green}{SUCCESS} \\ \hline
+    \textbf{F9} & The system \textbf{should} allow users to specify the bandwidth of all links in the network. & \textcolor{orange}{MODERATE} \\ \hline
+    \textbf{F10} & The system \textbf{should} allow users to specify the delay of all links in the network. & \textcolor{orange}{MODERATE} \\ \hline
+    \textbf{F11} & The system \textbf{should} allow users to specify the chance of packet loss for all links in the network. & \textcolor{orange}{MODERATE} \\ \hline
+    \textbf{F12} & The system \textbf{should} allow switches and hosts to be configured in a vertical linear topology. & \textcolor{green}{SUCCESS} \\ \hline
+    \textbf{F13} & The system \textbf{should} employ multiple levels of logging. & \textcolor{green}{SUCCESS} \\ \hline
+    \textbf{F14} & The system \textbf{should} conform to \textit{Python}'s PEP8 code standard \cite{python_pep8}. & \textcolor{green}{SUCCESS} \\ \hline
+    \textbf{F15} & The system \textbf{should} be made open-source. & \textcolor{green}{SUCCESS} \\ \hline
+    \textbf{F16} & The system \textbf{could} allow users to configure the system to use a Poisson distribution for link delays. & \textcolor{orange}{MODERATE} \\ \hline
+    \textbf{F17} & The system \textbf{could} allow users to configure the bandwidth of FPGA-based smart network switch nodes. & \textcolor{orange}{MODERATE} \\ \hline
+    \textbf{F18} & The system \textbf{could} allow users to configure the delay of FPGA-based smart network switch nodes. & \textcolor{orange}{MODERATE} \\ \hline
+    \textbf{F19} & The system \textbf{could} allow users to configure the chance of packet loss of FPGA-based smart network switch nodes. & \textcolor{orange}{MODERATE} \\ \hline
+    \textbf{F20} & The system \textbf{could} allow users to display all node connections before running tests. & \textcolor{green}{SUCCESS} \\ \hline
+    \textbf{F21} & The system \textbf{won't} be configured for IPv6 connections. & \textcolor{green}{SUCCESS} \\ \hline
+  \end{longtable}
+\end{center}
