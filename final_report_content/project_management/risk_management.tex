@@ -13,7 +13,120 @@
 % Complete failure of main device (i.e. Iroh) :  Backups were taken regularly, and alternative devices were available
 % github dies : local copy availble, resilio sync backups avilable, will switch to gitlab.com
 % mininet stops being supported : existing version of mininet still available, development limited to Ubuntu 16.04 (are there alternatives?)
+
 % Changes to any third party libraries? : find alternatives or stick with most recent versions
 % Single developer : agile, and regular supervisor meetings. constantly ensuring goals were feasible in case developer got ill or somethign
 % ESLP issues : BCS guidelines, and anonymity
 % General hardware failure : No individual piece of hardware crucial
+
+In order to ensure the success of the project, a number of potentially negative situations have been considered. In order to minimise the impact these situations could have on the project, strategies have been established to mitigate them.
+
+These situations are shown in table \ref{risk_mitigation_table}, along with a measure of the severity of the situation and a measure of the likelihood of the situation.
+
+\begin{table}[t]
+  \begin{adjustbox}{addcode={\begin{minipage}{\width}}{\caption{
+      Possible Risks and Mitigation Strategies
+      }\label{risk_mitigation_table}\end{minipage}},rotate=90,center}
+      % }\label{final_gantt_chart}\end{minipage}},rotate=90,scale={0.7}{0.8},center}
+  % \caption{Possible Risks and Mitigation Strategies}
+  % \begin{center}
+    \begin{tabularx}{\textheight}{|l|X|l|l|X|} \hline
+      \textbf{Risk} & \textbf{Description} & \textbf{Severity} & \textbf{Likelihood} & \textbf{Mitigation} \\ \thickhline
+      \makecell[l]{Hardware \\ failure} &
+      Complete failure of primary machine used for project development.
+      This would then mean an alternative device would need to be procured to use as the primary development machine, and any files existing only on this machine would be lost. &
+      Medium &
+      Low &
+      All files were backed up using both \textit{GitHub} and \textit{Resilio Sync}.
+      As a result, no files would be lost if the machine failed.
+      While finding an alternative machine for development would be inconvenient, other machines are available, such as those in the Warwick Department of Computer Science. \\ \hline
+
+      \makecell[l]{\textit{GitHub} \\ failure} &
+      Failure of the remote repository where project code and documents are stored. This would cause the loss of any files in the \textit{GitHub} repository. &
+      Low &
+      Low &
+      Since any files in the \textit{GitHub} repository will have been uploaded to it from a local machine, at no point should there be any data in \textit{GitHub} which does not exist locally.
+      In addition, \textit{Resilio Sync} will be used to replicate files across multiple local devices, so that backups exist of all code and documents.
+      An alternative web-based hosting service for version control using \textit{Git}, such as \textit{GitLab} \cite{gitlab}, will be used in the event that \textit{GitHub} does fail. \\ \hline
+
+      \makecell[l]{\textit{Mininet} \\ discontinued} &
+      \textit{Mininet} is a significant dependancy of the implemented system.
+      If development of \textit{Mininet} stopped, a suitable alternative may need to be found.
+      While other network simulation software does exist, finding a replacement for \textit{Mininet} which is open-source, and has a suitable API may be challenging.
+      Fortunately, the implemented system would still be able to use the latest version of \textit{Mininet}, so it may be possible to continue development with this version. &
+      Medium &
+      Low &
+      A copy has been made of \textit{Mininet}'s \textit{GitHub} repository so that it can still be used in the event that \textit{Mininet} is discontinued. \\ \hline
+
+      % Single developer &
+      % The project was being developed by an individual, resulting in a greater impact to the project if the developer became temporarily unable to work, for example due to illness. &
+      % Medium &
+      % Medium &
+      % The agile methodology chosen for the project provides the project with the necessary flexibility to deal with this situation. Frequent meetings with the project supervisor to re-evaluate the feasiblilty of the project, taking into account any illness or similar circumstances, should enable the project to complete on time. \\ \hline
+
+    \end{tabularx}
+  \end{adjustbox}
+  % \end{center}
+  % \label{risk_mitigation_table}
+\end{table}
+
+
+\begin{table}[t]
+  \begin{adjustbox}{rotate=90,center}
+    \begin{tabularx}{\textheight}{|l|X|l|l|X|} \hline
+      \textbf{Risk} & \textbf{Description} & \textbf{Severity} & \textbf{Likelihood} & \textbf{Mitigation} \\ \thickhline
+      \makecell[l]{Single \\ developer} &
+      The project was being developed by an individual, resulting in a greater impact to the project if the developer became temporarily unable to work, for example due to illness. &
+      Medium &
+      Medium &
+      The agile methodology chosen for the project provides the project with the necessary flexibility to deal with this situation. Frequent meetings with the project supervisor to re-evaluate the feasiblilty of the project, taking into account any illness or similar circumstances, should enable the project to complete on time. \\ \hline
+
+    \end{tabularx}
+  \end{adjustbox}
+  % \end{center}
+  % \label{risk_mitigation_table}
+\end{table}
+
+% \begin{center}
+% \begin{table}[t]
+%   \begin{adjustbox}{addcode={\begin{minipage}{\width}}{\caption{
+%     Possible Risks and Mitigation Strategies
+%   %       Possible Risks and Mitigation Strategies
+%         }\label{risk_mitigation_table}\end{minipage}},rotate=90,center}
+%   \begin{longtable}{|l|p{3cm}|l|l|p{3cm}|} \\ \hline
+%       \textbf{Risk} & \textbf{Description} & \textbf{Severity} & \textbf{Likelihood} & \textbf{Mitigation} \\ \thickhline
+%       \makecell[l]{Hardware \\ failure} &
+%       Complete failure of primary machine used for project development.
+%       This would then mean an alternative device would need to be procured to use as the primary development machine, and any files existing only on this machine would be lost. &
+%       Medium &
+%       Low &
+%       All files were backed up using both \textit{GitHub} and \textit{Resilio Sync}.
+%       As a result, no files would be lost if the machine failed.
+%       While finding an alternative machine for development would be inconvenient, other machines are available, such as those in the Warwick Department of Computer Science. \\ \hline
+%
+%       \makecell[l]{\textit{GitHub} \\ failure} &
+%       Failure of the remote repository where project code and documents are stored. This would cause the loss of any files in the \textit{GitHub} repository. &
+%       Low &
+%       Low &
+%       Since any files in the \textit{GitHub} repository will have been uploaded to it from a local machine, at no point should there be any data in \textit{GitHub} which does not exist locally.
+%       In addition, \textit{Resilio Sync} will be used to replicate files across multiple local devices, so that backups exist of all code and documents.
+%       An alternative web-based hosting service for version control using \textit{Git}, such as \textit{GitLab} \cite{gitlab}, will be used in the event that \textit{GitHub} does fail. \\ \hline
+%
+%       \makecell[l]{\textit{Mininet} \\ discontinued} &
+%       \textit{Mininet} is a significant dependancy of the implemented system.
+%       If development of \textit{Mininet} stopped, a suitable alternative may need to be found.
+%       While other network simulation software does exist, finding a replacement for \textit{Mininet} which is open-source, and has a suitable API may be challenging.
+%       Fortunately, the implemented system would still be able to use the latest version of \textit{Mininet}, so it may be possible to continue development with this version. &
+%       Medium &
+%       Low &
+%       A copy has been made of \textit{Mininet}'s \textit{GitHub} repository so that it can still be used in the event that \textit{Mininet} is discontinued. \\ \hline
+%
+%       Single developer &
+%       The project was being developed by an individual, resulting in a greater impact to the project if the developer became temporarily unable to work, for example due to illness. &
+%       Medium &
+%       Medium &
+%       The agile methodology chosen for the project provides the project with the necessary flexibility to deal with this situation. Frequent meetings with the project supervisor to re-evaluate the feasiblilty of the project, taking into account any illness or similar circumstances, should enable the project to complete on time. \\ \hline
+%   \end{longtable}
+% \end{adjustbox}
+% % \end{center}
+% \end{table}
