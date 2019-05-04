@@ -27,18 +27,23 @@
 % \renewcommand{\rmdefault}{cmr}
 % \renewcommand{\ttdefault}{cmr}
 
+\pagenumbering{roman}
+
+% Hack to prevent extra blank pages
+% In order to add an extra blank page after title page,
+% move the following two lines after \onehalfspacing
+\let\oldcleardoublepage\cleardoublepage
+\let\cleardoublepage\clearpage
+
 \input{final_report_content/titlepage}
 
 \onehalfspacing
-\pagenumbering{roman}
 
 \addcontentsline{toc}{chapter}{Abstract}
 \begin{abstract}
   \input{final_report_content/abstract}
 \end{abstract}
 
-\let\oldcleardoublepage\cleardoublepage
-\let\cleardoublepage\clearpage
 
 \renewcommand{\abstractname}{Keywords}
 \addcontentsline{toc}{chapter}{Keywords}
