@@ -1,1 +1,71 @@
-Network switch, FPGA, Mininet
+% \newcommand{\tabitem}{%
+%   \usebeamertemplate{itemize item}\hspace*{\labelsep}}
+%
+%
+%
+% \begin{frame}{}
+%
+%
+%   \begin{center}
+%     \begin{tabular}{@{}l@{}}
+%       \tabitem Network Switch \\
+%       \tabitem FPGA \\
+%       \tabitem Networking \\
+%       \tabitem Mininet \\
+%       \tabitem Open-source \\
+%       \tabitem Infrastructure \\
+%
+%     \end{tabular}
+%   \end{center}
+% \end{frame}
+
+% \afterpage{
+% \newgeometry{left=5cm}
+% \begin{itemize}
+%   % \item \begin{center} Network Switch \end{center}
+%   % \item \begin{center} FPGA \end{center}
+%   % \item \begin{center} Networking \end{center}
+%   % \item \begin{center} Mininet \end{center}
+%   % \item \begin{center} Open-source \end{center}
+%   % \item \begin{center} Infrastructure \end{center}
+%   \item Network Switch
+%   \item FPGA
+%   \item Networking
+%   \item Mininet
+%   \item Open-source
+%   \item Infrastructure
+% \end{itemize}
+%
+% \clearpage
+% \restoregeometry
+% }
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+
+\begin{changemargin}{5cm}{5cm}
+
+\noindent
+\begin{itemize}
+  % \item \begin{center} Network Switch \end{center}
+  % \item \begin{center} FPGA \end{center}
+  % \item \begin{center} Networking \end{center}
+  % \item \begin{center} Mininet \end{center}
+  % \item \begin{center} Open-source \end{center}
+  % \item \begin{center} Infrastructure \end{center}
+  \item \mbox{Network Switch}
+  \item FPGA
+  \item Networking
+  \item Mininet
+  \item Open-source
+  \item Infrastructure
+\end{itemize}
+
+\end{changemargin}
