@@ -9,3 +9,111 @@
 % deploy to docker hub, testing there?
 % deploy to pip, testing there?
 %
+
+Comprehensive tests were necessary in order to ensure that the implemented system functioned as intended.
+The testing for this system was separated into unit, integration, system, environment, and user testing, as shown in the sections below.
+
+\textit{Travis CI} \cite{travis_ci} is an web-based CI platform designed for running automated tests.
+It was for many of the tests in this project due to its clear interface, and easy integration with \textit{GitHub} repositories.
+Whenever code was uploaded to \textit{GitHub}, \textit{Travis CI} would automatically run all configured tests on the code, and would notify the developer by email if any tests failed.
+The testing environment used by \textit{Travis CI} can be easily configured using a single \textit{YAML} \cite{yaml} file located in the \textit{GitHub} repository for the project.
+
+
+
+\section{Unit Testing}
+\label{unit_testing}
+Unit testing was conducted to ensure each individual component of the system functioned as intended.
+Tests were written for function in the code using a variety of different inputs, and the output of these tests was compared with the expected output.
+The \textit{Python} library \textit{unittest} \cite{python_unittests} was used to write these tests, as it is designed for this purpose, and integrates easily with both the existing system and \textit{Travis CI}.
+The results of the unit tests can be seen in table \ref{unit_test_results}.
+
+\begin{table}[t]
+  \caption{Results of Unit Tests}
+  \begin{center}
+    \begin{tabularx}{\textwidth}{|Y|c|c|} \hline
+      % \textbf{Unit Test} & \makecell{\textbf{Linked \\ Requirement(s)}} & \textbf{Success / Failure} \\ \thickhline
+      \textbf{Unit Test} & \textbf{Linked Requirement(s)} & \textbf{Success / Failure} \\ \thickhline
+
+      % 0 & 0 & 0 & 0 (A) \\ \hline
+    \end{tabularx}
+  \end{center}
+  \label{unit_test_results}
+\end{table}
+
+\section{Integration Testing}
+\label{integration_testing}
+Integration testing was conducted to ensure the individual components of the system interacted with each other as intended.
+Tests were written for different combinations of functions which were used together in the system using a variety of different inputs, and the output of these tests was compared with the expected output.
+As with the unit tests discussed in section \ref{unit_testing}, the \textit{Python} library \textit{unittest} was used to write these tests.
+The results of the integration tests can be seen in table \ref{integration_test_results}.
+
+\begin{table}[t]
+  \caption{Results of Integration Tests}
+  \begin{center}
+    \begin{tabularx}{\textwidth}{|Y|c|c|} \hline
+      % \textbf{Integration Test} & \makecell{\textbf{Linked \\ Requirement(s)}} & \textbf{Success / Failure} \\ \thickhline
+      \textbf{Integration Test} & \textbf{Linked Requirement(s)} & \textbf{Success / Failure} \\ \thickhline
+
+      % 0 & 0 & 0 & 0 (A) \\ \hline
+    \end{tabularx}
+  \end{center}
+  \label{integration_test_results}
+\end{table}
+
+\section{System Testing}
+\label{system_testing}
+System testing was conducted to ensure the system as a whole performed as intended.
+The entire system was tested using different inputs for the available configuration options, and the output of the system was compared with the expected output.
+The results of the system tests can be seen in table \ref{integration_test_results}.
+
+
+\begin{table}[t]
+  \caption{Results of System Tests}
+  \begin{center}
+    \begin{tabularx}{\textwidth}{|Y|c|c|} \hline
+      % \textbf{System Test} & \makecell{\textbf{Linked \\ Requirement(s)}} & \textbf{Success / Failure} \\ \thickhline
+      \textbf{System Test} & \textbf{Linked Requirement(s)} & \textbf{Success / Failure} \\ \thickhline
+
+      % 0 & 0 & 0 & 0 (A) \\ \hline
+    \end{tabularx}
+  \end{center}
+  \label{system_test_results}
+\end{table}
+
+
+\section{Environment Testing}
+\label{environment_testing}
+Environment testing was conducted to ensure the system performed as expected in different environment.
+The system was tested using a variety of different operating systems with both \textit{Python} 2.7 and \textit{Python} 3.6, and the output of the system was compared with the expected output.
+The results of the system tests can be seen in table \ref{integration_test_results}.
+
+\begin{table}[t]
+  \caption{Results of Environment Tests}
+  \begin{center}
+    \begin{tabularx}{\textwidth}{|Y|c|c|} \hline
+      % \textbf{Environment Test} & \makecell{\textbf{Linked \\ Requirement(s)}} & \textbf{Success / Failure} \\ \thickhline
+      \textbf{Environment Test} & \textbf{Linked Requirement(s)} & \textbf{Success / Failure} \\ \thickhline
+
+      % 0 & 0 & 0 & 0 (A) \\ \hline
+    \end{tabularx}
+  \end{center}
+  \label{environment_test_results}
+\end{table}
+
+\section{User Testing}
+User testing was conducted to ensure that the system was sufficiently easy to use, and to find any issues with the system not identified through other means of testing.
+The system was presented to a number of individuals who were asked to use the system without further instruction, and were then observed.
+Feedback received through this method is shown in table \ref{user_test_results}, including the steps taken to resolve any issues identified.
+
+\begin{table}[t]
+  \caption{Results of User Tests}
+  \begin{center}
+    \begin{tabularx}{\textwidth}{|Y"Y|} \hline
+      \textbf{User Feedback} & \textbf{Developer Response} \\ \thickhline
+      It is not clear how to install the system. & An installation guide was added to the public \textit{GitHub} page for the system. \\ \hline
+      It is not clear what the available customisation options are.  & While a guide to the available customisation options can be found by passing the \textit{--help} flag to the system, an equivalent guide was added to the public \textit{GitHub} page for the system. \\ \hline
+      % 0 & 0 & 0 & 0 (A) \\ \hline
+    \end{tabularx}
+  \end{center}
+  \label{user_test_results}
+\end{table}
