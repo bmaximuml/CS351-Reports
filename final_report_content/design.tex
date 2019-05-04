@@ -1,0 +1,87 @@
+% Mininet
+% virtual Network
+% custom toppologies
+% modelling fgpa smart switches
+% distinction between FPGA-based smart network switches  and regular
+
+% initially, just do regular
+
+% iterative design, so system should always be working, and one feature was added at a time, along with tests
+
+% key features were...
+
+% talk about pylint, integrated with pycharm
+
+% travis?
+
+% poisson feature
+
+% git submodules
+  % talk about how you thought about including the code from mininet, and keeping it up to date
+  % YOU HAVEN'T MENTIONED SUBMODULES ANYWHERE ELSE!
+  % talk about how mininet is developed in git on github
+
+  % the same approach could be used for other shit in future
+
+% I thought about documentation,
+  % Readme was sufficient
+
+% click vs argparse
+
+% logging
+
+After completing the initial research and constructing the requirements for the system, the development of the system began.
+Due to the agile methodology of the project, development was conducted incrementally, with each feature being developed sequentially along with its associated tests and documentation.
+This provides the advantage of the system being functional throughout the process of development, and allows for flexibility of how the development process occurs.
+However, this makes it challenging to separate the design of the system from its implementation, since these both occurred throughout development for each individual feature.
+Regardless, to provide a clear overview of the development process they have been separated for the purpose of the report, and the design of the system is discussed in this section.
+
+\section{Tool Selection}
+\label{tool_selection}
+
+\subsection{Network Simulation}
+
+Since the primary purpose of the system is to model networks, an application needed to be sourced to simulate these networks.
+While this application could have been implemented from scratch as part of the project, which would have thereby have eliminated any associated licencing or dependency issues, this was deemed to be an inefficient use of time since this software already exists, and would be complex to implement.
+\textit{Mininet} was chosen for this purpose since it is open-source, has a wide array of features, and integrates well with SDN using its custom version of \textit{OpenFlow} \cite{mininet_openflow}.
+\textit{OpenFlow} is a ``flow-based switch specification designed to enable researchers to run experiments in live networks''.
+Similar to \textit{P4}, \textit{OpenFlow} can be used to manually control the data flowing through a network switch, and \textit{Mininet} supports this protocol directly.
+
+\subsection{Programming Language}
+
+\textit{Python} \cite{python} was chosen as the primary programming language for the project.
+\textit{Mininet}'s API is written in \textit{Python}, and \textit{Python} includes many tools which can be used to ease the development of an application.
+\textit{Python}'s style guide, \textit{PEP 8} \cite{python_pep8}, can be used to ensure an application is written according to the standards used in industry, and tools such as \textit{Pylint} can notify the developer if any code written does not meet this.
+
+\section{Open-Source}
+\label{open_source}
+
+The system being made open-source contributed to the development approach.
+\textit{GitHub} \cite{github} was used to make the code open source, and \textit{git} \cite{git} is the version control system used by \textit{GitHub}.
+\textit{Git} tracks changes in the form of `commits', which constitute a defined set of changes made to the code, accompanied by a short message summarising the changes.
+Commits are a core concept of \textit{git}, however \textit{git} contains many additional features pertaining to managing the source for a project.
+Many of these features are complex, and as a result care needs to be taken when using \textit{git} for an open-source project that it is used in an appropriate way.
+Each commit should be used for exactly one step in development, where these steps are suitable sized such that each step is as small as possible, while ensuring that the system functionality is maintained with every commit.
+In other words, no commit should decrease the functionality of the system, unless that is the intended purpose of the commit.
+
+Another core concept of \textit{git} is `branches'.
+Each branch contains a replica of the project source, from the point in time when the branch was created.
+Each branch is totally independent of every other branch, and there is no limit to the number of branches which can be created.
+This means that two different features can be developed simultaneously without impacting one other, by developing each one on its own branch.
+Branches are also able to be `merged' into one another, appending all of the commits from one branch onto the branch it is being merged into.
+This feature was used heavily throughout the development of the project, with every feature being developed in its own branch before being merged into the primary branch of the project, known as the `master' branch.
+
+\section{Dependencies}
+
+Since the project included dependencies, a reliable way of delivering the system with these dependencies was required.
+While the source code for all dependencies could be manually copied into the repository for the system, this would then require manually copying the code for every dependency whenever updates are released, and would also increase the size of the system.
+For all \textit{Python} libraries used (which would normally be installed using \textit{Python}'s \textit{Pip} package manager), the \textit{Python setuptools} \cite{python_setuptools} library was used.
+This is installed by default with every installation of \textit{Python}, and allows for \textit{Python} dependencies to be specified in a \textit{Python} file which defines setup characteristics of the application.
+Whenever an application which uses \textit{setuptools}, such as this system, is installed using \textit{Pip}, \textit{Pip} will then check the \textit{setuptools} file for the list of dependencies, and also install these.
+
+The only dependency used by the project which could not be included in this way was \textit{Mininet}.
+Since \textit{Mininet} is open-source, and its code is available in a \textit{git} repository on \textit{GitHub}, it was decided to use \textit{git submodules} in order to register \textit{Mininet} as a project dependency.
+\textit{Git submodules} are a feature of a \textit{git} which allows a \textit{git} repository to declare further \textit{git} repositories that it uses.
+These additional repositories will then be downloaded with the source code for the main system whenever it is downloaded using the `--recursive' flag.
+\textit{Git submodules} can also be attached to a particular commit of a repository, and this has been used to attach the submodule of \textit{Mininet} to its version 2.2.2 release.
+When a new stable version of \textit{Mininet} is released, this can be tested, and then updated simply be changing the version number in the \textit{git submodules} configuration file.
