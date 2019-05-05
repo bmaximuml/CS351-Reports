@@ -98,7 +98,7 @@ Once these had been implemented, running the system would:
   \item Create the required hosts
   \item Create the required links between switches and other switches, and between switches and hosts
   \item Run the network test and display the results
-  \item Break down the network
+  \item Break down the network.
 \end{enumerate}
 
 \section{System Structure}
@@ -118,7 +118,7 @@ With the core functionality in place, structure could now be added to the system
 For command line applications such as this one, customisation is commonly performed through either configuration files, or through arguments specified at the command line.
 For this system, command line arguments were deemed more appropriate, since they allow for a simpler user experience, while still providing a high level of flexibility.
 The \textit{Python} library \textit{Click} \cite{python_click} was used to implement these arguments.
-\textit{Click} was chosen since it allows for a large amount customisation of the system's arguments.
+\textit{Click} was chosen since it allows for a large amount of customisation of the system's arguments.
 By default, \textit{Click} configures the `--help' flag, which will print out a formatted list of all available flags and arguments for the system, along with the type of data they expect and any explanatory messages associated with each flag or argument.
 For each flag or argument, the type can be configured, as can the explanatory message, and the name of the flag or argument.
 A default value can also be set, and custom restrictions can be placed on the type of data accepted by each flag or argument.
@@ -126,7 +126,7 @@ A default value can also be set, and custom restrictions can be placed on the ty
 \subsection{Documentation}
 \label{documentation}
 Suitable documentation was required to ensure the usability of the system.
-A separate user guide was considered, however it was concluded that this was unnecessary, due to the straightforward nature of the command line interface.
+A separate user guide was considered. However, it was concluded that this was unnecessary, due to the straightforward nature of the command line interface.
 Instead, a `Readme' file was written in \textit{Markdown} \cite{markdown} and added to the \textit{GitHub} repository for the system where it would be formatted and clearly displayed.
 % More
 
@@ -135,7 +135,7 @@ Instead, a `Readme' file was written in \textit{Markdown} \cite{markdown} and ad
 % \textit{Travis CI} \cite{travis_ci} was used to conduct many of the tests in the system.
 \textit{Travis CI} \cite{travis_ci} is a web-based CI platform designed for running automated tests, and this was used to conduct many of the tests in the system.
 The testing process itself is discussed in detail in section \ref{testing}.
-However, prior to tests being written, \textit{Travis CI} needed to be configured to automatically run tests on change it detected in \textit{GitHub}.
+However, prior to tests being written, \textit{Travis CI} needed to be configured to automatically run tests on changes it detected in \textit{GitHub}.
 To do this, a \textit{YAML} configuration file for \textit{Travis CI} was added to the code.
 A directory was also created for tests to be added to.
 
@@ -160,7 +160,7 @@ The logging package supports six log levels which are each associated with an in
 These are shown in table \ref{log_levels}.
 Whenever a message is logged by the system, it is logged using one of these levels.
 A user can specify the mininum log level to be displayed, and then all log messages of this level or higher will be displayed.
-If no level specified, the system defaults to INFO.
+If no level is specified, the system defaults to INFO.
 
 \begin{table}[t]
   \caption{Log Levels for \textit{Python} \textit{Logging} Package}
@@ -172,7 +172,7 @@ If no level specified, the system defaults to INFO.
       WARNING & 30 \\ \hline
       INFO & 20 \\ \hline
       DEBUG & 10 \\ \hline
-      NOTSET & 0 \\ \hline
+      % NOTSET & 0 \\ \hline
     \end{tabularx}
   \end{center}
   \label{log_levels}
@@ -219,13 +219,13 @@ This test was configured so that it would only be executed if the system was sta
 \textit{Mininet} also includes a test to measure the bandwidth of the virtual network, based on the \textit{iperf} \cite{iperf} tool.
 This test was added to the system, and was configured so that it would only be executed if the system was started with the `-i' or `--iperf' flags.
 
-At this stage of implementation, the topology of the virtual network created by the system wass limited to a tree topology which could not be modified.
+At this stage of implementation, the topology of the virtual network created by the system was limited to a tree topology which could not be modified.
 However, by the end of the implementation stage, the depth and spread of the tree topology would be customisable, and the user would be able to specify a level of the tree to be modelled as FPGA-based smart network switches.
-With this in mind, an additional performance test was written which would measure the round trip time between either the the base of the and the root of the tree, or between the base of the tree and the FPGA-based smart network switch layer of the tree.
+With this in mind, an additional performance test was written which would measure the round trip time between either the base and the root of the tree, or between the base and the FPGA-based smart network switch layer of the tree.
 The purpose of this was to measure the time it would take a packet to be processed in the virtual network, if the root of the tree was thought of as `the cloud'.
 This test was conducted by sending 10 packets using the ping network utility, and reading the utility's output.
 This consisted of the minimum round trip time, average round trip time, maximum round trip time, and the standard deviation.
-The test was configured so that it would be executed by default, however it could be disabled by setting the `-c' or `--cloud-fpga' flags to `False'.
+The test was configured so that it would be executed by default, although it could be disabled by setting the `-c' or `--cloud-fpga' flags to `False'.
 
 \subsection{Network Topology Customisation}
 \label{network_topology_customisation}
@@ -233,7 +233,7 @@ The test was configured so that it would be executed by default, however it coul
 %   spread
 %   depth
 Two options were added to customise the topology of the virtual network.
-The topology was still restricted to a tree, however the spread of the tree could be specified by the user with the `-s' or `--spread' flags, and the depth of the tree could be specified by the user with the `-d' or `--depth' flags.
+The topology was still restricted to a tree, but the spread of the tree could be specified by the user with the `-s' or `--spread' flags, and the depth of the tree could be specified by the user with the `-d' or `--depth' flags.
 If the spread was not specified by the user, it would default to two.
 This value was chosen since this was the minimum spread which would still result in a tree topology.
 A spread of one would result in a series of switches with a single host connected at the end.
@@ -258,7 +258,7 @@ If this option was not specified, no chance of loss would be applied.
 
 An option was also added to configure the network delay to be selected from a Poisson distribution for which the average is the current network delay.
 This was designed to add an element of randomness to the system, again to bring this closer to a real network.
-The enable the use of a Poisson distribution for the link delay, the `--poisson' flag could be used with the system.
+The `--poisson' flag could be used with the system to enable the use of a Poisson distribution for the link delay.
 
 \subsection{FPGA-Based Smart Network Switch Customisations}
 \label{FPGA_Based_Smart_Network_Switch_Customisations}
