@@ -141,9 +141,63 @@ A directory was also created for tests to be added to.
 
 \section{Feature Implementation}
 \label{features}
+Features could now be implemented on the system.
+The development approach up to this point would allow for each feature to be added into the system without needing to be concerned with anything other than that feature.
+Features were added sequentially, along with their required \textit{Click} configuration, their tests, and their documentation.
 
 \subsection{Logging}
 \label{logging}
+The first feature to be added was standardised logging.
+This was done using \textit{Python}'s \textit{logging} \cite{python_logging} package, which is designed for this purpose and is highly customisable in how its logs are recorded.
+The logging package uses concepts of `loggers', `handlers', and `formatters'.
+A logger receives log messages from a system, and dispatches these to a set of defined handlers.
+The handlers will then process the log messages, according the formatters they are linked to.
+A formatter simply defines a format of a log message.
+For this system, one standard formatter was used, which was defined as \codeword{%(asctime)s - %(name)s - %(levelname)s - %(message)s}.
+This formatter would print the current date and time, followed by the name of the logger, followed by the log level used for the message, followed by the actual log level.
+
+The logging package supports six log levels which are each associated with an integer value.
+These are shown in table \ref{log_levels}.
+Whenever a message is logged by the system, it is logged using one of these levels.
+A user can specify the mininum log level to be displayed, and then all log messages of this level or higher will be displayed.
+If no level specified, the system defaults to INFO.
+
+\begin{table}[t]
+  \caption{Log Levels for \textit{Python} \textit{Logging} Package}
+  \begin{center}
+    \begin{tabularx}{\textwidth}{|Y"Y|} \hline
+      \textbf{Log Level} & \textbf{Numeric Value} \\ \thickhline
+      CRITICAL & 50 \\ \hline
+      ERROR & 40 \\ \hline
+      WARNING & 30 \\ \hline
+      INFO & 20 \\ \hline
+      DEBUG & 10 \\ \hline
+      NOTSET & 0 \\ \hline
+    \end{tabularx}
+  \end{center}
+  \label{log_levels}
+\end{table}
+
+The majority of the configuration for the logging package was placed in a \textit{JSON} file.
+Three log handlers were specified in this file.
+These handlers logged all messages with a log level greater or equal to the system's minimum log level.
+Each handler logged the messages to a different location, and had a different hard minimum log level of messages it would record, shown in table \ref{log_handlers}.
+The log files used were automatically rotated by the \textit{logging} package, such that when the log files reached 10MB in size, the data would be moved to an old file, and a new file would be created.
+A maximum of 20 backup log files would be kept for each of the two handlers which logged data to files.
+
+\begin{table}[t]
+  \caption{Log Handlers Used}
+  \begin{center}
+    \begin{tabularx}{\textwidth}{|Y"Y|} \hline
+      \textbf{Log Target} & \textbf{Hard Minimum Log Level} \\ \thickhline
+      Console & DEBUG \\ \hline
+      Log file `fpga\_switch\_model.info.log' & INFO \\ \hline
+      Log file `fpga\_switch\_model.error.log' & ERROR \\ \hline
+    \end{tabularx}
+  \end{center}
+  \label{log_handlers}
+\end{table}
+
 %   log
 %   dump-node-connections
 
@@ -156,24 +210,70 @@ A directory was also created for tests to be added to.
   %   ping-all
   %   iperf
 
-%
+Functions were implemented to allow users to measure the performance of the virtual networks created by the system.
+The initial system described in section \ref{initial_system} included a simple test to confirm all hosts could communicate with one another.
+This test was based on the `ping' network utility, which sends an ICMP packet from one host to another, and measures the round trip time for the packet.
+The test used in the initial system, known as a `ping-all' test, iterates through every host in the virtual network pinging every other host, and confirms that a response is received to every ping.
+This test was configured so that it would only be executed if the system was started with the `-p' or `--ping-all' flags.
+
+\textit{Mininet} also includes a test to measure the bandwidth of the virtual network, based on the \textit{iperf} \cite{iperf} tool.
+This test was added to the system, and was configured so that it would only be executed if the system was started with the `-i' or `--iperf' flags.
+
+At this stage of implementation, the topology of the virtual network created by the system wass limited to a tree topology which could not be modified.
+However, by the end of the implementation stage, the depth and spread of the tree topology would be customisable, and the user would be able to specify a level of the tree to be modelled as FPGA-based smart network switches.
+With this in mind, an additional performance test was written which would measure the round trip time between either the the base of the and the root of the tree, or between the base of the tree and the FPGA-based smart network switch layer of the tree.
+The purpose of this was to measure the time it would take a packet to be processed in the virtual network, if the root of the tree was thought of as `the cloud'.
+This test was conducted by sending 10 packets using the ping network utility, and reading the utility's output.
+This consisted of the minimum round trip time, average round trip time, maximum round trip time, and the standard deviation.
+The test was configured so that it would be executed by default, however it could be disabled by setting the `-c' or `--cloud-fpga' flags to `False'.
+
 \subsection{Network Topology Customisation}
 \label{network_topology_customisation}
 % further options
 %   spread
 %   depth
+Two options were added to customise the topology of the virtual network.
+The topology was still restricted to a tree, however the spread of the tree could be specified by the user with the `-s' or `--spread' flags, and the depth of the tree could be specified by the user with the `-d' or `--depth' flags.
+If the spread was not specified by the user, it would default to two.
+This value was chosen since this was the minimum spread which would still result in a tree topology.
+A spread of one would result in a series of switches with a single host connected at the end.
+If the depth was not specified by the user, it would default to four.
+This value was chosen since this was the minimum depth which would allow a root node, a layer of FPGA-based smart network switches, a layer of standard switches, and a layer of hosts.
 
 \subsection{Network Performance Customisation}
 \label{network_performance_customisation}
-
 %   bandwidth
 %   delay
 %   loss
 
 %   poisson
+Customisation options were then added to limit the performance of the virtual network, in order to bring the model closer to a real network.
+One added was to limit the bandwidth of the virtual network.
+This limit would be applied to all of the links in the network, and could be specified using the `-b' or `--bandwidth' flags.
+If this option was not specified, a limit of 10Mbps would be applied.
+Another option applied a delay on all links in the network, and could be specified using the `-e' or `--delay' flags.
+If this option was not specified, a delay of 1ms would be applied.
+A futher option caused a chance for packets to be lost when passing through a link, and could be specified using the `-l' or `--loss' flags.
+If this option was not specified, no chance of loss would be applied.
+
+An option was also added to configure the network delay to be selected from a Poisson distribution for which the average is the current network delay.
+This was designed to add an element of randomness to the system, again to bring this closer to a real network.
+The enable the use of a Poisson distribution for the link delay, the `--poisson' flag could be used with the system.
 
 \subsection{FPGA-Based Smart Network Switch Customisations}
 \label{FPGA_Based_Smart_Network_Switch_Customisations}
+
+This set of options introduced FPGA-based smart network switches to the system.
+With the `-f' or `--fpga' flags, a level of the tree topology could be specified to be modelled as FPGA-based smart network switches instead of regular switches.
+These switches were implemented as regular switches linked to a host, where the link between them had double the possibility for packet loss compared to that of standard links, a bandwidth of 504Mbps, and latency twice that of standard links.
+These hosts were treated as the FPGAs in the switches, and were used to respond to any pings directed to the switch, such as those used in the cloud-fpga test discussed in section \ref{performance_tests}.
+The reason for this increased possibility for packet loss was that it was seen as more likely for packets to be lost inside an FPGA-based smart network switch compared to travelling along a wire, or when travelling through a standard switch.
+The default bandwidth was set to 504Mbps since this is the maximum bandwidth of the PCIe interface, and it is assumed that an implemented FPGA-based smart network switch will incorporate the FPGA using an interface at least this fast.
+The latency was increased to account for the time it would take to perform the computation on the packets in the switch before they are returned.
+
+All of the performance characteristics described above can be customised using options added to the system.
+The `--fpga-bandwidth' flag can be used to specify the bandwidth of the FPGA-based smart network switch links, the `--fpga-delay' flag can be used to specify their latency, and the `--fpga-loss' flag can be used to specify the probability of packet loss.
+
 
 %   fpga
 %   fpga-bandwidth
