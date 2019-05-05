@@ -32,9 +32,9 @@
 
 After completing the initial research and constructing the requirements for the system, the development of the system began.
 Due to the agile methodology of the project, development was conducted incrementally, with each feature being developed sequentially along with its associated tests and documentation.
-This provides the advantage of the system being functional throughout the process of development, and allows for flexibility of how the development process occurs.
-However, this makes it challenging to separate the design of the system from its implementation, since these both occurred throughout development for each individual feature.
-Regardless, to provide a clear overview of the development process they have been separated for the purpose of the report, and the design of the system is discussed in this section.
+This provides the advantage of the system being functional throughout the process of development, and allows for flexibility as to how the development process occurs.
+However, this makes the separation of the design of the system from its implementation challenging, since both occurred throughout development for each individual feature.
+Nonetheless, in order to provide a clear overview of the development process, they have been separated for the purpose of the report, and the design of the system is discussed in this section.
 
 \section{Tool Selection}
 \label{tool_selection}
@@ -57,17 +57,18 @@ Similar to \textit{P4}, \textit{OpenFlow} can be used to manually control the da
 \label{open_source}
 
 The system being made open-source contributed to the development approach.
-\textit{GitHub} \cite{github} was used to make the code open source, and \textit{git} \cite{git} is the version control system used by \textit{GitHub}.
+The code was made open-source using \textit{GitHub} \cite{github}, which uses \textit{git} \cite{git} as its version control system.
+% \textit{GitHub} \cite{github} was used to make the code open-source, and \textit{git} \cite{git} is the version control system used by \textit{GitHub}.
 \textit{Git} tracks changes in the form of `commits', which constitute a defined set of changes made to the code, accompanied by a short message summarising the changes.
 Commits are a core concept of \textit{git}, however \textit{git} contains many additional features pertaining to managing the source for a project.
 Many of these features are complex, and as a result care needs to be taken when using \textit{git} for an open-source project that it is used in an appropriate way.
-Each commit should be used for exactly one step in development, where these steps are suitable sized such that each step is as small as possible, while ensuring that the system functionality is maintained with every commit.
+Each commit should be used for exactly one step in development, where these steps are suitably sized so that each step is as small as possible, while ensuring that the system functionality is maintained with every commit.
 In other words, no commit should decrease the functionality of the system, unless that is the intended purpose of the commit.
 
 Another core concept of \textit{git} is `branches'.
 Each branch contains a replica of the project source, from the point in time when the branch was created.
 Each branch is totally independent of every other branch, and there is no limit to the number of branches which can be created.
-This means that two different features can be developed simultaneously without impacting one other, by developing each one on its own branch.
+This means that two different features can be developed simultaneously without impacting one another, by developing each one on its own branch.
 Branches are also able to be `merged' into one another, appending all of the commits from one branch onto the branch it is being merged into.
 This feature was used heavily throughout the development of the project, with every feature being developed in its own branch before being merged into the primary branch of the project, known as the `master' branch.
 
@@ -85,4 +86,4 @@ Since \textit{Mininet} is open-source, and its code is available in a \textit{gi
 \textit{Git submodules} are a feature of a \textit{git} which allows a \textit{git} repository to declare further \textit{git} repositories that it uses.
 These additional repositories will then be downloaded with the source code for the main system whenever it is downloaded using the `--recursive' flag.
 \textit{Git submodules} can also be attached to a particular commit of a repository, and this has been used to attach the submodule of \textit{Mininet} to its version 2.2.2 release.
-When a new stable version of \textit{Mininet} is released, this can be tested, and then updated simply be changing the version number in the \textit{git submodules} configuration file.
+When a new stable version of \textit{Mininet} is released, this can be tested, and then updated simply by changing the version number in the \textit{git submodules} configuration file.

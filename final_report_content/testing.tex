@@ -11,10 +11,10 @@
 %
 
 Comprehensive tests were necessary in order to ensure that the implemented system functioned as intended.
-The testing for this system was separated into unit, integration, system, environment, and user testing, as shown in the sections below.
+The testing for this system was separated into unit, integration, system, environment, and user testing, as discussed further in the sections below.
 
 As mentioned in section \ref{testing_structure}, \textit{Travis CI} \cite{travis_ci} is a web-based CI platform designed for running automated tests.
-It was for many of the tests in this project due to its clear interface, and easy integration with \textit{GitHub} repositories.
+It was used for many of the tests in this project due to its clear interface, and easy integration with \textit{GitHub} repositories.
 Whenever code was uploaded to \textit{GitHub}, \textit{Travis CI} would automatically run all configured tests on the code, and would notify the developer by email if any tests failed.
 The testing environment used by \textit{Travis CI} can be easily configured using a single \textit{YAML} \cite{yaml} file located in the \textit{GitHub} repository for the project.
 
@@ -22,7 +22,7 @@ The testing environment used by \textit{Travis CI} can be easily configured usin
 
 \section{Unit Testing}
 \label{unit_testing}
-Unit testing was conducted to ensure each individual component of the system functioned as intended.
+Unit testing was conducted to ensure that each individual component of the system functioned as intended.
 Tests were written for function in the code using a variety of different inputs, and the output of these tests was compared with the expected output.
 The \textit{Python} library \textit{unittest} \cite{python_unittests} was used to write these tests, as it is designed for this purpose, and integrates easily with both the existing system and \textit{Travis CI}.
 The results of the unit tests can be seen in table \ref{unit_test_results}.
@@ -83,7 +83,7 @@ The results of the system tests can be seen in table \ref{integration_test_resul
 
 \section{Environment Testing}
 \label{environment_testing}
-Environment testing was conducted to ensure the system performed as expected in different environment.
+Environment testing was conducted to ensure the system performed as expected in different environments.
 The system was tested using a variety of different operating systems with both \textit{Python} 2.7 and \textit{Python} 3.6, and the output of the system was compared with the expected output.
 The results of the system tests can be seen in table \ref{integration_test_results}.
 
