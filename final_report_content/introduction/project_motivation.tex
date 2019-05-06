@@ -6,8 +6,8 @@
     % large data centres
     % AWS/Azure/hadoop
 
-Cloud computing enables computing resources to be available to users remotely, so that users do not need to actively manage the compute hardware.
-This is often motivated by economies of scale, in that the greater quantity of computing resources you are managing, the cheaper it becomes per unit.
+Cloud computing enables computing resources to be available to users remotely, so that users do not need to actively manage the hardware.
+This is often motivated by economies of scale, in that the greater the quantity of computing resources being managed, the cheaper each unit becomes.
 Cloud computing also makes it easier for a user to scale the resources they are using, since this is simply done by increasing or decreasing a regular payment, instead of buying or selling hardware. This can be particularly attractive to small businesses or individuals.
 
 Cloud computing has been slowly but steadily rising in popularity since the release of the first cloud computing platform: Amazon's Elastic Compute Cloud (EC2) \cite{ec2}.
@@ -17,7 +17,7 @@ Since cloud computing intends to serve the computing requirements of large numbe
 This is normally done in the form of data centres, which are large buildings filled with servers and the appropriate infrastructure to make those servers accessible remotely. For an example of the scale that a large cloud computing provider requires, AWS has 64 ``availability zones'' around the world where ``each AZ can be multiple data centers (typically 3), and at full scale can be hundreds of thousands of servers.'' \cite{aws_infrastructure_blog}.
 
 When a cloud computing platform hosts a customer's data, that data is stored on one of the servers owned by the platform in one of their data centres. A good platform will replicate the data in case of hardware failure, but generally the data would only be served from a single data centre, unless the customer pays for the data to be hosted in more locations.
-Whenever data is requested over a network, there is a delay involved in retrieving that data, much of which arises from the geographical distance that the data has to travel. A user located in Australia will have a longer delay after requested data hosted in an American data centre, than someone requesting the same data who lives in America.
+Whenever data is requested over a network, there is a delay involved in retrieving that data, much of which arises from the geographical distance that the data has to travel. A user located in Australia will have a longer delay after requesting data hosted in an American data centre, than someone requesting the same data who lives in America.
 This issue, partially caused by the rise in cloud computing and, as a result, data centres, is a key motivation for this project.
 
 \begin{figure}[ht]
@@ -58,7 +58,7 @@ While edge nodes do improve the service, they suffer from many of the same drawb
 
 Before cloud computing became widely popular, it was necessary for users to host their own files. For those with large data requirements, it was not uncommon to use mainframe computers. These are large, high performance server computers, generally built and sold as a unit. Those using a mainframe would process all of their data on site. This would allow for data to be processed with an extremely low latency.
 
-However, mainframe computers became unpopular for all the reasons cloud computing grew in popularity. Mainframe computers require significant on-site management. They require a high up-front cost, constant running costs in terms of power and cooling, are physically large and loud, and can be difficult to scale.
+However, mainframe computers became unpopular for all the reasons cloud computing grew in popularity. Mainframe computers require significant on-site management. They require a high up-front cost, constant running costs in terms of power and cooling, are physically large and noisy, and can be difficult to scale.
 
 \subsection{Project Solution}
 \label{project_solution}
@@ -77,7 +77,7 @@ The approach this project has taken in solving the above problem has been compri
 
 \subsubsection{Maintaining Data Path}
 
-This approach led to the idea of FPGA-based smart network switches. These switches could replace standard network switches, and would be able to perform small amounts of computation on data as it passed through these switches. If data was able to be fully processed by the switch, it would then be returned to the device, without ever needing to be sent to the data centre. If the switch was unable to complete the computation within a set amount of time, it would release the data in its partially processed state along its original path, where it would then meet either further FPGA-based smart network switches, or its destination server. If it met further FPGA-based smart network switches prior to reaching its destination server, these could perform additional processing on the data, leading to a higher chance of completing the computation for a set of data.
+This approach led to the idea of FPGA-based smart network switches. These could replace standard network switches, and would be able to perform small amounts of computation on data as it passed through these switches. If data was able to be fully processed by the switch, it would then be returned to the device, without ever needing to be sent to the data centre. If the switch was unable to complete the computation within a set amount of time, it would release the data in its partially processed state along its original path, where it would then meet either further FPGA-based smart network switches, or its destination server. If it met further FPGA-based smart network switches prior to reaching its destination server, these could perform additional processing on the data, leading to a higher chance of completing the computation for a set of data.
 
 \subsubsection{Choosing a Device for Computation}
 
@@ -96,9 +96,9 @@ Cost is the most difficult means of comparing devices, since there are many diff
 However, these are consumer prices, and assume the purchase of only one product.
 % However, even these prices cannot be considered entirely accurate, since they assume the purchase of only one device.
 It is more difficult to find accurate prices for FPGAs and ASICs, but a comparison of the two can be seen in figure \ref{fpga_asic_cost_tradeoff}. ASICs have a much higher initial cost, but a lower cost per unit compared to FPGAs.
-However, FPGAs are a very active research area, and their cost per unit is slowly decreasing, causing the break even point shown in figure \ref{fpga_asic_cost_tradeoff} to slowly shift to the right, making FPGAs more cost-effective than ASICs.
+However, FPGAs are a very active research area, and their cost per unit is slowly decreasing, causing the break-even point shown in figure \ref{fpga_asic_cost_tradeoff} to slowly shift to the right, making FPGAs more cost-effective than ASICs for a larger number of units.
 
-FPGAs were chosen as the optimal computation device for this project. ASICs are insufficiently flexible, and even with their advantages in speed, they are subsequently not suitable for this task. CPUs, while more flexible than FPGAs, are significantly slower, and would be impractical to combine with a network switch. FPGAs are fast, flexible, and sufficiently small devices, and are the most suitable tool available.
+FPGAs were chosen as the optimal computation device for this project. ASICs are insufficiently flexible, and even with their advantages in speed, they are not suitable for this task. CPUs, while more flexible than FPGAs, are significantly slower, and would be impractical to combine with a network switch. FPGAs are fast, flexible, and sufficiently small devices, and are the most suitable tool available.
 
 \begin{figure}[ht!]
   \centering

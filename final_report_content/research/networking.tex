@@ -27,7 +27,7 @@ The TCP/IP model was developed for ARPANET, a predecessor of the modern Internet
   \begin{center}
     \begin{tabularx}{\textwidth}{|c|l|X|}
       \hline
-      \textbf{7} & Application & The layer where user programs are located. In addition to user specificed programs, there are common applications such as FTP, Telnet (virtual terminal), or e-mail, which operate at the application layer. \\ \hline
+      \textbf{7} & Application & The layer where user programs are located. In addition to user specified programs, there are common applications such as FTP, Telnet (virtual terminal), or e-mail, which operate at the application layer. \\ \hline
       \textbf{6} & Presentation & Provides a set of data transformation services including character conversion, data compression, and data encryption. \\ \hline
       \textbf{5} & Session & Designed to manage an entire conversation, consisting of a number of dialogue units which can be suspended and restarted through synchronisation points. However, \mbox{client/}server communication is based on an asymmetric model, in which one or more client processes can request resources from a server process. \\ \hline
       \textbf{4} & Transport & Provides datagrams for both connection-oriented and connectionless protocols. In a connection-oriented service, the transport layer negotiates a suitable quality of service for the given network and application. This typically includes throughput, transit delay, and error rate among other parameters. \\ \hline
@@ -47,7 +47,7 @@ The TCP/IP model was developed for ARPANET, a predecessor of the modern Internet
       \textbf{4} & Application & Equivalent to the Session, Presentation, and Application layers of the OSI model. The Application layer is used to handle all process to process communication, and includes session establishment, compression, and encryption. \\ \hline
       \textbf{3} & Transport & Equivalent to the Transport layer of the OSI model. The Transport layer includes message segmentation, session multiplexing, and message reordering. \\ \hline
       \textbf{2} & Internet & Equivalent to the Network layer of the OSI model. The Internet layer includes traffic routing, traffic control, and logical addressing. \\ \hline
-      \textbf{1} & Link & Equivalent to the Data Link and Physical layers of the OSI model. Provides physical network functions like signal levels, signal coding methods and, error detection. \\ \hline
+      \textbf{1} & Link & Equivalent to the Data Link and Physical layers of the OSI model. Provides physical network functions like signal levels, signal coding methods, and error detection. \\ \hline
     \end{tabularx}
   \end{center}
   \label{tcp_ip_model}
@@ -56,7 +56,9 @@ The TCP/IP model was developed for ARPANET, a predecessor of the modern Internet
 \subsection{Packet Switching}
 Layers of a model can offer either a connection-oriented or a connectionless service to the layers above. A connection-oriented service involves establishing a connection, using the connection, and then releasing the connection, similar to a landline telephone system. This requires all the parameters for the connection to be specified in advance, which may involve a negotiation between the sender and the receiver.
 
-A connectionless service involves providing every packet with the full source and destination address for the data. Each packet is then sent independently so that each node the packet passes through chooses the next node to send it to. The current node makes this decision by choosing the node that is closest to the packet's final destination from the nodes it is aware of. There are two main switching methods for a connectionless service: ``store-and-forward'' and ``cut-through''. ``Store-and-forward'' involves each intermediate node receiving a message in full before forwarding packets to the next node, while ``cut-through'' does not require an intermediate node to have the entire message before it starts forwarding packets \cite{tanenbaum}.
+A connectionless service involves providing every packet with the full source and destination address for the data. Each packet is then sent independently so that each node the packet passes through chooses the next node to send it to. The current node makes this decision by choosing the node that is closest to the packet's final destination from the nodes of which it is aware. There are two main switching methods for a connectionless service: ``store-and-forward'' and ``cut-through''. ``Store-and-forward'' involves each intermediate node receiving a message in full before forwarding packets to the next node, while ``cut-through'' does not require an intermediate node to have the entire message before it starts forwarding packets \cite{tanenbaum}.
+
+\newpage
 
 \subsection{Physical Media}
 \label{physical_media_research}
@@ -72,7 +74,7 @@ Each layer of the TCP/IP model prepends an additional header to the data, result
 Most protocols have a set header format, making it much easier to extract data from them. As an example, the header for an IPv4 packet is shown in figure \ref{ip_header}. Each row of the header represents 32 bits of data.
 The \textit{Options} field of the header has a variable length, so the \textit{IHL} field is used to record the length of the IP header.
 The \textit{Total Length} field represents the total size of the packet in 32 bit words, including both the header and the payload.
-This information can be used to extract the data from the headers, and to remove the appropriate number of bits in order to read the payload itself. For this project the P4 language \cite{P4} will be used to extract data from packet headers, as will be discussed further in section \ref{p4}.
+This information can be used to extract the data from the headers, and to remove the appropriate number of bits in order to read the payload itself. For this project the \textit{P4} language \cite{P4} will be used to extract data from packet headers, as will be discussed further in section \ref{p4}.
 
 The \textit{Version} field of the IP header refers to which version of the protocol is used by the packet.
 The most commonly used version is IPv4, although a newer version, IPv6, has been standardised \cite{rfc1883} \cite{rfc8200}.
@@ -106,4 +108,4 @@ Every device on a network using IP requires a unique IP address. When data is be
 
 
 % from progress report
-The primary benefit of SDN is that it gives the programmer more direct and clear control over how routing decisions are made. SDN aims to separate the network control, known as the control plane, from the forwarding proces, known as the data plane \cite{software_defined_networking_survey}. The control plane makes decisions about packets which are either destined to or originally from the current host, while the data plane makes decisions about packets which are going through the host. The control plane also maintains the routing table, which is used by both planes to make routing decisions. \textit{P4} is an example of a language which can be used to manipulate the control plane, and is discussed further in section \ref{p4}.
+The primary benefit of SDN is that it gives the programmer more direct and clear control over how routing decisions are made. SDN aims to separate the network control, known as the control plane, from the forwarding process, known as the data plane \cite{software_defined_networking_survey}. The control plane makes decisions about packets which are either destined for or originally from the current host, while the data plane makes decisions about packets which are going through the host. The control plane also maintains the routing table, which is used by both planes to make routing decisions. \textit{P4} is an example of a language which can be used to manipulate the control plane, and is discussed further in section \ref{p4}.

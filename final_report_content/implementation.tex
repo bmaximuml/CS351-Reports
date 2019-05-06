@@ -89,7 +89,7 @@
 The system was initially implemented as a wrapper for the \textit{Mininet} API.
 This would utilise the relevant features of the API, while restricting access to those which were not relevant to the system.
 This involved declaring \textit{Mininet} as a \textit{git submodule} of the system, as discussed in section \ref{dependencies}.
-The implemented features of the \textit{Mininet} API were a simple tree topology, and a network test built into the API which would confirm all hosts in the topology could communicate with one another.
+The implemented features of the \textit{Mininet} API were a simple tree topology, and a network test built into the API which would confirm that all hosts in the topology could communicate with one another.
 Once these had been implemented, running the system would:
 
 \begin{enumerate}
@@ -151,7 +151,7 @@ The first feature to be added was standardised logging.
 This was done using \textit{Python}'s \textit{logging} \cite{python_logging} package, which is designed for this purpose and is highly customisable in how its logs are recorded.
 The logging package uses concepts of `loggers', `handlers', and `formatters'.
 A logger receives log messages from a system, and dispatches these to a set of defined handlers.
-The handlers will then process the log messages, according the formatters they are linked to.
+The handlers will then process the log messages, according to the formatters they are linked to.
 A formatter simply defines a format of a log message.
 For this system, one standard formatter was used, which was defined as \codeword{%(asctime)s - %(name)s - %(levelname)s - %(message)s}.
 This formatter would print the current date and time, followed by the name of the logger, followed by the log level used for the message, followed by the actual log level.
@@ -248,7 +248,7 @@ This value was chosen since this was the minimum depth which would allow a root 
 
 %   poisson
 Customisation options were then added to limit the performance of the virtual network, in order to bring the model closer to a real network.
-One added was to limit the bandwidth of the virtual network.
+One option which was added was to limit the bandwidth of the virtual network.
 This limit would be applied to all of the links in the network, and could be specified using the `-b' or `--bandwidth' flags.
 If this option was not specified, a limit of 10Mbps would be applied.
 Another option applied a delay on all links in the network, and could be specified using the `-e' or `--delay' flags.

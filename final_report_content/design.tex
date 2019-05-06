@@ -33,7 +33,7 @@
 After completing the initial research and constructing the requirements for the system, the development of the system began.
 Due to the agile methodology of the project, development was conducted incrementally, with each feature being developed sequentially along with its associated tests and documentation.
 This provides the advantage of the system being functional throughout the process of development, and allows for flexibility as to how the development process occurs.
-However, this makes the separation of the design of the system from its implementation challenging, since both occurred throughout development for each individual feature.
+However, this makes the separation of the design of the system from its implementation challenging, since both occurred throughout the development of each individual feature.
 Nonetheless, in order to provide a clear overview of the development process, they have been separated for the purpose of the report, and the design of the system is discussed in this section.
 
 \section{Tool Selection}
@@ -42,7 +42,7 @@ Nonetheless, in order to provide a clear overview of the development process, th
 \subsection{Network Simulation}
 
 Since the primary purpose of the system is to model networks, an application needed to be sourced to simulate these networks.
-While this application could have been implemented from scratch as part of the project, which would have thereby have eliminated any associated licencing or dependency issues, this was deemed to be an inefficient use of time since this software already exists, and would be complex to implement.
+While this application could have been implemented from scratch as part of the project, which would have thereby eliminated any associated licencing or dependency issues, this was deemed to be an inefficient use of time since this software already exists, and would be complex to implement.
 \textit{Mininet} was chosen for this purpose since it is open-source, has a wide array of features, and integrates well with SDN using its custom version of \textit{OpenFlow} \cite{mininet_openflow}.
 \textit{OpenFlow} is a ``flow-based switch specification designed to enable researchers to run experiments in live networks''.
 Similar to \textit{P4}, \textit{OpenFlow} can be used to manually control the data flowing through a network switch, and \textit{Mininet} supports this protocol directly.
@@ -69,7 +69,7 @@ Another core concept of \textit{git} is `branches'.
 Each branch contains a replica of the project source, from the point in time when the branch was created.
 Each branch is totally independent of every other branch, and there is no limit to the number of branches which can be created.
 This means that two different features can be developed simultaneously without impacting one another, by developing each one on its own branch.
-Branches are also able to be `merged' into one another, appending all of the commits from one branch onto the branch it is being merged into.
+Branches are also able to be `merged' into one another, appending all of the commits from one branch onto the branch into which it is being merged.
 This feature was used heavily throughout the development of the project, with every feature being developed in its own branch before being merged into the primary branch of the project, known as the `master' branch.
 
 \section{Dependencies}
@@ -83,7 +83,7 @@ Whenever an application which uses \textit{setuptools}, such as this system, is 
 
 The only dependency used by the project which could not be included in this way was \textit{Mininet}.
 Since \textit{Mininet} is open-source, and its code is available in a \textit{git} repository on \textit{GitHub}, it was decided to use \textit{git submodules} in order to register \textit{Mininet} as a project dependency.
-\textit{Git submodules} are a feature of a \textit{git} which allows a \textit{git} repository to declare further \textit{git} repositories that it uses.
+\textit{Git submodules} are a feature of \textit{git} which allows a \textit{git} repository to declare further \textit{git} repositories that it uses.
 These additional repositories will then be downloaded with the source code for the main system whenever it is downloaded using the `--recursive' flag.
 \textit{Git submodules} can also be attached to a particular commit of a repository, and this has been used to attach the submodule of \textit{Mininet} to its version 2.2.2 release.
 When a new stable version of \textit{Mininet} is released, this can be tested, and then updated simply by changing the version number in the \textit{git submodules} configuration file.
