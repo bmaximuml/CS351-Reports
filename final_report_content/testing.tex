@@ -25,15 +25,18 @@ The testing environment used by \textit{Travis CI} can be easily configured usin
 Unit testing was conducted to ensure that each individual component of the system functioned as intended.
 Tests were written for function in the code using a variety of different inputs, and the output of these tests was compared with the expected output.
 The \textit{Python} library \textit{unittest} \cite{python_unittests} was used to write these tests, as it is designed for this purpose, and integrates easily with both the existing system and \textit{Travis CI}.
-The results of the unit tests can be seen in table \ref{unit_test_results}.
+The results of the unit tests can be seen in a simplifed format in table \ref{unit_test_results}.
 
 \begin{table}[t]
   \caption{Results of Unit Tests}
   \begin{center}
-    \begin{tabularx}{\textwidth}{|Y|c|c|} \hline
+    \begin{tabularx}{\textwidth}{|Y|c|} \hline
       % \textbf{Unit Test} & \makecell{\textbf{Linked \\ Requirement(s)}} & \textbf{Success / Failure} \\ \thickhline
-      \textbf{Unit Test} & \textbf{Linked Requirement(s)} & \textbf{Success / Failure} \\ \thickhline
-
+      \textbf{Unit Test} & \textbf{Success / Failure} \\ \thickhline
+      Test \textit{halve\_delay} function & \textcolor{green}{SUCCESS} \\ \hline
+      Test \textit{get\_poisson\_delay} function & \textcolor{green}{SUCCESS} \\ \hline
+      Test \textit{test\_cloud\_fpga} function & \textcolor{green}{SUCCESS} \\ \hline
+      Test \textit{TreeTopoGeneric} class & \textcolor{green}{SUCCESS} \\ \hline
       % 0 & 0 & 0 & 0 (A) \\ \hline
     \end{tabularx}
   \end{center}
@@ -45,14 +48,22 @@ The results of the unit tests can be seen in table \ref{unit_test_results}.
 Integration testing was conducted to ensure the individual components of the system interacted with each other as intended.
 Tests were written for different combinations of functions which were used together in the system using a variety of different inputs, and the output of these tests was compared with the expected output.
 As with the unit tests discussed in section \ref{unit_testing}, the \textit{Python} library \textit{unittest} was used to write these tests.
-The results of the integration tests can be seen in table \ref{integration_test_results}.
+The results of the integration tests can be seen in a simplifed format in table \ref{integration_test_results}.
 
 \begin{table}[t]
   \caption{Results of Integration Tests}
   \begin{center}
-    \begin{tabularx}{\textwidth}{|Y|c|c|} \hline
+    \begin{tabularx}{\textwidth}{|Y|c|} \hline
       % \textbf{Integration Test} & \makecell{\textbf{Linked \\ Requirement(s)}} & \textbf{Success / Failure} \\ \thickhline
-      \textbf{Integration Test} & \textbf{Linked Requirement(s)} & \textbf{Success / Failure} \\ \thickhline
+      \textbf{Integration Test} & \textbf{Success / Failure} \\ \thickhline
+      Test \textit{TreeTopoGeneric} class with \textit{get\_poisson\_delay} function class & \textcolor{green}{SUCCESS} \\ \hline
+      Test \textit{TreeTopoGeneric} class with \textit{get\_poisson\_delay} function class & \textcolor{green}{SUCCESS} \\ \hline
+      Test \textit{TreeTopoGeneric} class with \textit{halve\_delay} function & \textcolor{green}{SUCCESS} \\ \hline
+      Test \textit{TreeTopoGeneric} class with \textit{test\_cloud\_fpga} function & \textcolor{green}{SUCCESS} \\ \hline
+      Test \textit{TreeTopoGeneric} class with \textit{get\_poisson\_delay} function class and \textit{halve\_delay} functions & \textcolor{green}{SUCCESS} \\ \hline
+      Test \textit{TreeTopoGeneric} class with \textit{test\_cloud\_fpga} and \textit{halve\_delay} functions & \textcolor{green}{SUCCESS} \\ \hline
+      Test \textit{TreeTopoGeneric} class with \textit{test\_cloud\_fpga}, \textit{get\_poisson\_delay} and \textit{halve\_delay} functions & \textcolor{green}{SUCCESS} \\ \hline
+
 
       % 0 & 0 & 0 & 0 (A) \\ \hline
     \end{tabularx}
@@ -73,6 +84,15 @@ The results of the system tests can be seen in table \ref{integration_test_resul
     \begin{tabularx}{\textwidth}{|Y|c|c|} \hline
       % \textbf{System Test} & \makecell{\textbf{Linked \\ Requirement(s)}} & \textbf{Success / Failure} \\ \thickhline
       \textbf{System Test} & \textbf{Linked Requirement(s)} & \textbf{Success / Failure} \\ \thickhline
+        Can the system function using a tree topology with a spread of two and a depth of four, with a total of 8 hosts? & F1, F2 & \textcolor{green}{SUCCESS} \\ \hline
+        Can the system function using a tree topology with a spread of three and a depth of 8, with a total of 2187 hosts? & F1, F2, F3, F4 & \textcolor{green}{SUCCESS} \\ \hline
+        Can the system report the bandwidth in the network? & F7 & \textcolor{green}{SUCCESS} \\ \hline
+        Can the bandwidth in the network be configured correctly? & F9 & \textcolor{green}{SUCCESS} \\ \hline
+        Can the link delay in the network be configured correctly? & F10 & \textcolor{green}{SUCCESS} \\ \hline
+        Can the probability of packet loss in the network be configured correctly? & F11 & \textcolor{green}{SUCCESS} \\ \hline
+        Can the link delay in the network be configured using a Poisson distribution correctly? & F16 & \textcolor{green}{SUCCESS} \\ \hline
+        Can all node connections be correctly displayed? & F20 & \textcolor{green}{SUCCESS} \\ \hline
+        Can the user specify the level of logging employed by the system? & F13 & \textcolor{green}{SUCCESS} \\ \hline
 
       % 0 & 0 & 0 & 0 (A) \\ \hline
     \end{tabularx}
@@ -90,10 +110,13 @@ The results of the system tests can be seen in table \ref{integration_test_resul
 \begin{table}[t]
   \caption{Results of Environment Tests}
   \begin{center}
-    \begin{tabularx}{\textwidth}{|Y|c|c|} \hline
+    \begin{tabularx}{\textwidth}{|Y|Y|Y|} \hline
       % \textbf{Environment Test} & \makecell{\textbf{Linked \\ Requirement(s)}} & \textbf{Success / Failure} \\ \thickhline
-      \textbf{Environment Test} & \textbf{Linked Requirement(s)} & \textbf{Success / Failure} \\ \thickhline
-
+      \textbf{Python Version} & \textbf{OS} & \textbf{Success / Failure} \\ \thickhline
+      2.7 & Ubuntu 16.04 LTS & \textcolor{green}{SUCCESS} \\ \hline
+      3.6 & Ubuntu 16.04 LTS & \textcolor{green}{SUCCESS} \\ \hline
+      2.7 & Ubuntu 14.04 LTS & \textcolor{green}{SUCCESS} \\ \hline
+      3.6 & Ubuntu 14.04 LTS & \textcolor{green}{SUCCESS} \\ \hline
       % 0 & 0 & 0 & 0 (A) \\ \hline
     \end{tabularx}
   \end{center}
